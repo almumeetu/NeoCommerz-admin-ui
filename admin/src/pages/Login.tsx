@@ -34,7 +34,7 @@ export const Login = () => {
                 <div className="w-1.5 h-7 bg-blue-600"></div>
               </div>
             </div>
-            <span className="text-4xl font-bold tracking-tight">Hishabi</span>
+            <span className="text-4xl font-bold tracking-tight">Neocommerz</span>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@ export const Login = () => {
                   <div className="w-1 h-7 bg-blue-600"></div>
                 </div>
               </div>
-              <span className="text-2xl font-bold text-blue-600">Hishabi</span>
+              <span className="text-2xl font-bold text-blue-600">Neocommerz</span>
             </div>
             <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Welcome back</h2>
             <p className="text-sm text-gray-500 mt-2">Welcome back! Please enter your details.</p>
