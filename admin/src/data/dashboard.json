@@ -1,0 +1,68 @@
+{
+  "metrics": [
+    {
+      "id": "total_transactions",
+      "title": "Total Transactions",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "transaction"
+    },
+    {
+      "id": "average_sale",
+      "title": "Average Sale",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "sale"
+    },
+    {
+      "id": "daily_average_sale",
+      "title": "Daily Average Sale",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "sale_daily"
+    },
+    {
+      "id": "net_sales",
+      "title": "Net Sales",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "net"
+    },
+    {
+      "id": "profit",
+      "title": "Profit",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "profit"
+    },
+    {
+      "id": "sale_in_cash",
+      "title": "Sale in Cash",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "cash"
+    },
+    {
+      "id": "refund_amount",
+      "title": "Refund Amount",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "down",
+      "icon": "refund"
+    }
+  ],
+  "salesTrend": [
+    { "date": "01/04", "sales": 0 },
+    { "date": "08/04", "sales": 0.5 },
+    { "date": "15/04", "sales": 0.2 },
+    { "date": "22/04", "sales": 0.8 }
+  ],
+  "topProducts": [],
+  "salesByPaymentMethod": []
+}
