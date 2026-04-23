@@ -5,11 +5,7 @@ import {
   Users,
   Package,
   Store,
-  Tags,
   Gift,
-  FileText,
-  ShieldAlert,
-  Settings,
   ChevronDown,
   ChevronUp,
   PartyPopper,
@@ -19,12 +15,13 @@ import {
   PanelLeftClose,
   Wrench,
   Percent,
-  BarChart2,
   Settings2,
-  Users2
+  FileText,
+  ShieldCheck
 } from 'lucide-react';
 import clsx from 'clsx';
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 const menuGroups = [
   {
@@ -91,23 +88,61 @@ const menuGroups = [
   {
     title: 'FINANCE',
     items: [
-      { path: '/report', label: 'Report', icon: BarChart2, hasSubMenu: true }
+      { 
+        path: '/report', 
+        label: 'Report', 
+        icon: FileText, 
+        hasSubMenu: true,
+        subItems: [
+          { path: '/finance/sale-report', label: 'Sale Report' },
+          { path: '/finance/inventory-report', label: 'Inventory Report' },
+          { path: '/finance/purchase-report', label: 'Purchase Report' },
+          { path: '/finance/discount-report', label: 'Discount Report' },
+        ]
+      }
     ]
   },
   {
     title: 'ADMINISTRATION',
     items: [
-      { path: '/access-management', label: 'Access Management', icon: Users2, hasSubMenu: true },
-      { path: '/settings', label: 'Settings', icon: Settings2, hasSubMenu: true }
+      { 
+        path: '/access-management', 
+        label: 'Access Management', 
+        icon: ShieldCheck, 
+        hasSubMenu: true,
+        subItems: [
+          { path: '/access-management/users', label: 'Users' },
+          { path: '/access-management/roles', label: 'Roles' },
+        ]
+      }
+    ]
+  },
+  {
+    title: 'SETTINGS',
+    items: [
+      { 
+        path: '/settings-menu', 
+        label: 'Settings', 
+        icon: Settings2, 
+        hasSubMenu: true,
+        subItems: [
+          { path: '/settings/general', label: 'Settings' },
+          { path: '/settings/manage-website', label: 'Manage Website' },
+        ]
+      }
     ]
   }
 ];
 
 export const Sidebar = () => {
+  const { user, logout } = useAuth();
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({
     'Product': false,
     'Dashboard': true,
-    'E-Commerce': true
+    'E-Commerce': false,
+    'Report': true,
+    'Access Management': true,
+    'Settings': true
   });
 
   const toggleMenu = (label: string) => {
@@ -215,14 +250,17 @@ export const Sidebar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-white text-sm font-medium">
-              A
+              {user?.name.charAt(0) || 'A'}
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-medium text-gray-900">Am Saikat</span>
-              <span className="text-xs text-gray-500">amsaikat@neocommerz.com</span>
+              <span className="text-sm font-medium text-gray-900">{user?.name || 'User'}</span>
+              <span className="text-xs text-gray-500">{user?.email || 'user@example.com'}</span>
             </div>
           </div>
-          <button className="text-gray-400 hover:text-gray-600">
+          <button 
+            onClick={() => { if(confirm('Logout?')) logout(); }}
+            className="text-gray-400 hover:text-red-600 transition-colors"
+          >
             <LogOut className="w-4 h-4" />
           </button>
         </div>

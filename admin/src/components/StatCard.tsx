@@ -7,7 +7,7 @@ interface StatCardProps {
   trend: string;
   trendDirection: 'up' | 'down';
   icon: React.ReactNode;
-  color?: 'emerald' | 'red' | 'orange' | 'cyan' | 'purple' | 'emerald';
+  color?: 'emerald' | 'red' | 'orange' | 'cyan' | 'purple';
 }
 
 export const StatCard: React.FC<StatCardProps> = ({ 
@@ -26,13 +26,12 @@ export const StatCard: React.FC<StatCardProps> = ({
     orange: "text-orange-500 bg-orange-50",
     cyan: "text-cyan-500 bg-cyan-50",
     purple: "text-purple-500 bg-purple-50",
-    emerald: "text-emerald-500 bg-emerald-50",
   };
 
   return (
     <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between h-full">
       <div className="flex items-center gap-2 mb-4">
-        <div className={clsx("p-1.5 rounded-md", colorClasses[color])}>
+        <div className={clsx("p-1.5 rounded-md", colorClasses[color as keyof typeof colorClasses])}>
           {icon}
         </div>
         <span className="text-sm font-medium text-gray-600 flex items-center gap-1">

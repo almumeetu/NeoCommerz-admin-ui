@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Am Saikat",
+    "email": "almumeetu@gmail.com",
+    "password": "password",
+    "role": "Super Admin"
+  },
+  {
+    "id": 2,
+    "name": "Admin User",
+    "email": "admin@neocommerz.com",
+    "password": "password",
+    "role": "Admin"
+  }
+]

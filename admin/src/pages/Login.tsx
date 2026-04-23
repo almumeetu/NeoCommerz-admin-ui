@@ -1,124 +1,160 @@
-import { Eye, ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff, PartyPopper, ChevronDown } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import usersData from '../data/users.json';
 
 export const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [branch, setBranch] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  
+  const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/');
+    setError('');
+    setLoading(true);
+
+    try {
+      const user = usersData.find(u => u.email === email && u.password === password);
+      if (user) {
+        login({ id: user.id, name: user.name, email: user.email, role: user.role });
+        navigate('/dashboard');
+      } else {
+        setError('Invalid email or password. Please try again.');
+      }
+    } catch (err) {
+      setError('Something went wrong.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex w-full">
-      {/* Left side - Blue gradient overlay */}
-      <div className="hidden lg:flex flex-1 relative bg-emerald-600 overflow-hidden items-center justify-center">
-        {/* Abstract tech background patterns would be placed here via CSS or img */}
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.8) 0%, transparent 50%),
-                              linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.4) 45%, transparent 50%)`
-          }}
-        />
-        
-        {/* We can use a pseudo background to mimic the complex image, but keeping it simple for now */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-700/80 to-emerald-900/90 z-10" />
-
-        <div className="z-20 flex flex-col items-center">
-          <div className="flex items-center gap-2 text-white">
-            <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center">
-              <div className="flex items-end gap-1">
-                <div className="w-1.5 h-3 bg-emerald-600"></div>
-                <div className="w-1.5 h-5 bg-teal-500"></div>
-                <div className="w-1.5 h-7 bg-emerald-600"></div>
-              </div>
-            </div>
-            <span className="text-4xl font-bold tracking-tight">Neocommerz</span>
-          </div>
+    <div className="min-h-screen flex font-sans bg-white overflow-hidden">
+      {/* Left Side: Illustration & Branding */}
+      <div className="hidden lg:flex lg:w-1/2 relative bg-emerald-950 items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/Users/softzinoacademy/.gemini/antigravity/brain/96dad7ad-329c-4948-ab86-e1ce6a087bfb/login_bg_analytics_1776947191619.png" 
+            alt="Dashboard" 
+            className="w-full h-full object-cover opacity-40 mix-blend-overlay scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 to-blue-900/80"></div>
         </div>
+        
+        <div className="relative z-10 text-center px-12">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="w-16 h-16 bg-white/10 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/20">
+               <PartyPopper className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-5xl font-black text-white tracking-tighter">NeoCommerz</h1>
+          </div>
+          <p className="text-emerald-100/60 text-lg font-medium max-w-md mx-auto">
+            Experience the future of e-commerce administration with our professional-grade storefront management system.
+          </p>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute bottom-10 left-10 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 right-10 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Right side - Login form */}
-      <div className="flex-1 flex flex-col items-center justify-center p-8 bg-white relative">
-        <div className="w-full max-w-md space-y-8">
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 flex items-center justify-center">
-                <div className="flex items-end gap-0.5">
-                  <div className="w-1 h-3 bg-emerald-600"></div>
-                  <div className="w-1 h-5 bg-teal-500"></div>
-                  <div className="w-1 h-7 bg-emerald-600"></div>
-                </div>
-              </div>
-              <span className="text-2xl font-bold text-emerald-600">Neocommerz</span>
+      {/* Right Side: Login Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white relative">
+        <div className="w-full max-w-md">
+          <div className="flex flex-col items-center mb-10">
+            <div className="flex items-center gap-2 mb-8">
+              <PartyPopper className="w-8 h-8 text-emerald-600" />
+              <span className="text-2xl font-black text-gray-900 tracking-tight">NeoCommerz</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Welcome back</h2>
-            <p className="text-sm text-gray-500 mt-2">Welcome back! Please enter your details.</p>
+            <h2 className="text-4xl font-black text-gray-900 mb-2">Welcome back</h2>
+            <p className="text-gray-400 font-medium text-sm">Welcome back! Please enter your details.</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-5 mt-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {error && (
+              <div className="bg-red-50 text-red-600 px-4 py-3 rounded-xl text-sm font-bold border border-red-100 text-center">
+                {error}
+              </div>
+            )}
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input 
-                type="email" 
-                placeholder="Enter your email"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder:text-gray-400"
+              <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Email</label>
+              <input
+                type="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all text-gray-900"
+                placeholder="Enter your email"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-              <div className="relative">
-                <input 
-                  type="password" 
-                  placeholder="Enter your password"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder:text-gray-400"
+              <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Password</label>
+              <div className="relative group">
+                <input
+                  type={showPassword ? 'text' : 'password'}
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all text-gray-900"
+                  placeholder="Enter your password"
                 />
-                <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                  <Eye className="w-5 h-5" />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Select Branch</label>
+              <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Select Branch</label>
               <div className="relative">
-                <select className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-600 cursor-pointer">
-                  <option value="" disabled selected>Select a branch</option>
+                <select
+                  value={branch}
+                  onChange={(e) => setBranch(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all text-gray-900 appearance-none cursor-pointer"
+                >
+                  <option value="" disabled>Select a branch</option>
                   <option value="main">Main Branch</option>
-                  <option value="dhaka">Dhaka Branch</option>
+                  <option value="branch1">Mirpur Branch</option>
+                  <option value="branch2">Dhanmondi Branch</option>
                 </select>
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                  <ChevronDown className="w-5 h-5" />
-                </div>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-2 px-1">
               <input 
                 id="remember" 
                 type="checkbox" 
-                className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500 cursor-pointer"
+                className="w-4 h-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer" 
               />
-              <label htmlFor="remember" className="ml-2 block text-sm text-gray-700 cursor-pointer">
-                Remember for 30 days
-              </label>
+              <label htmlFor="remember" className="text-sm text-gray-500 font-medium cursor-pointer">Remember for 30 days</label>
             </div>
 
-            <button 
+            <button
               type="submit"
-              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2.5 rounded-lg transition-colors mt-2"
+              disabled={loading}
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 rounded-xl shadow-lg shadow-emerald-600/20 transition-all active:scale-[0.98] disabled:opacity-70 text-lg"
             >
-              Sign In
+              {loading ? 'Sign In...' : 'Sign In'}
             </button>
           </form>
-        </div>
 
-        <div className="absolute bottom-6 right-6 text-xs text-gray-400">
-          © Powered by Softzino
+          <p className="mt-12 text-center text-gray-400 text-xs font-medium">
+            © Powered by Softzino
+          </p>
         </div>
       </div>
     </div>
