@@ -39,7 +39,7 @@ export const Tags = () => {
                 <td className="px-6 py-4 text-gray-600">{tag.name}</td>
                 <td className="px-6 py-4 text-gray-600">{tag.createdOn}</td>
                 <td className="px-6 py-4">
-                  <div className={`w-10 h-5 rounded-full relative cursor-pointer ${tag.status ? 'bg-blue-600' : 'bg-gray-200'}`}>
+                  <div className={`w-10 h-5 rounded-full relative cursor-pointer ${tag.status ? 'bg-emerald-600' : 'bg-gray-200'}`}>
                     <div className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-all ${tag.status ? 'left-[22px]' : 'left-0.5'}`}></div>
                   </div>
                 </td>

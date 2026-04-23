@@ -12,7 +12,7 @@ export const Login = () => {
   return (
     <div className="min-h-screen flex w-full">
       {/* Left side - Blue gradient overlay */}
-      <div className="hidden lg:flex flex-1 relative bg-blue-600 overflow-hidden items-center justify-center">
+      <div className="hidden lg:flex flex-1 relative bg-emerald-600 overflow-hidden items-center justify-center">
         {/* Abstract tech background patterns would be placed here via CSS or img */}
         <div 
           className="absolute inset-0 opacity-20"
@@ -23,15 +23,15 @@ export const Login = () => {
         />
         
         {/* We can use a pseudo background to mimic the complex image, but keeping it simple for now */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-700/80 to-blue-900/90 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-700/80 to-emerald-900/90 z-10" />
 
         <div className="z-20 flex flex-col items-center">
           <div className="flex items-center gap-2 text-white">
             <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center">
               <div className="flex items-end gap-1">
-                <div className="w-1.5 h-3 bg-blue-600"></div>
+                <div className="w-1.5 h-3 bg-emerald-600"></div>
                 <div className="w-1.5 h-5 bg-teal-500"></div>
-                <div className="w-1.5 h-7 bg-blue-600"></div>
+                <div className="w-1.5 h-7 bg-emerald-600"></div>
               </div>
             </div>
             <span className="text-4xl font-bold tracking-tight">Neocommerz</span>
@@ -46,12 +46,12 @@ export const Login = () => {
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-8 flex items-center justify-center">
                 <div className="flex items-end gap-0.5">
-                  <div className="w-1 h-3 bg-blue-600"></div>
+                  <div className="w-1 h-3 bg-emerald-600"></div>
                   <div className="w-1 h-5 bg-teal-500"></div>
-                  <div className="w-1 h-7 bg-blue-600"></div>
+                  <div className="w-1 h-7 bg-emerald-600"></div>
                 </div>
               </div>
-              <span className="text-2xl font-bold text-blue-600">Neocommerz</span>
+              <span className="text-2xl font-bold text-emerald-600">Neocommerz</span>
             </div>
             <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Welcome back</h2>
             <p className="text-sm text-gray-500 mt-2">Welcome back! Please enter your details.</p>
@@ -63,7 +63,7 @@ export const Login = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-400"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder:text-gray-400"
                 required
               />
             </div>
@@ -74,7 +74,7 @@ export const Login = () => {
                 <input 
                   type="password" 
                   placeholder="Enter your password"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-400"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder:text-gray-400"
                   required
                 />
                 <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
@@ -86,7 +86,7 @@ export const Login = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Select Branch</label>
               <div className="relative">
-                <select className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-600 cursor-pointer">
+                <select className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-600 cursor-pointer">
                   <option value="" disabled selected>Select a branch</option>
                   <option value="main">Main Branch</option>
                   <option value="dhaka">Dhaka Branch</option>
@@ -101,7 +101,7 @@ export const Login = () => {
               <input 
                 id="remember" 
                 type="checkbox" 
-                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500 cursor-pointer"
               />
               <label htmlFor="remember" className="ml-2 block text-sm text-gray-700 cursor-pointer">
                 Remember for 30 days
@@ -110,7 +110,7 @@ export const Login = () => {
 
             <button 
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2.5 rounded-lg transition-colors mt-2"
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2.5 rounded-lg transition-colors mt-2"
             >
               Sign In
             </button>

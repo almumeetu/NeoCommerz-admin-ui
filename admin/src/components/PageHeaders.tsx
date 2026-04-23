@@ -33,7 +33,7 @@ export const SectionHeader = ({ title, count, itemName, onAdd, searchPlaceholder
         </button>
         <button 
           onClick={onAdd}
-          className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2"
+          className="px-4 py-2 bg-emerald-600 text-white text-sm font-medium rounded-md hover:bg-emerald-700 transition-colors flex items-center gap-2"
         >
           + Add {itemName.replace(/s$/, '')}
         </button>
@@ -45,7 +45,7 @@ export const SectionHeader = ({ title, count, itemName, onAdd, searchPlaceholder
       <input 
         type="text" 
         placeholder={searchPlaceholder}
-        className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
       />
     </div>
   </div>

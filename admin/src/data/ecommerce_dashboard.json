@@ -1,0 +1,128 @@
+{
+  "salesMetrics": [
+    {
+      "id": "total_transactions",
+      "title": "Total Transactions",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "transaction",
+      "color": "emerald"
+    },
+    {
+      "id": "average_sale",
+      "title": "Average Sale",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "sale",
+      "color": "emerald"
+    },
+    {
+      "id": "daily_average_sale",
+      "title": "Daily Average Sale",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "sale_daily",
+      "color": "emerald"
+    },
+    {
+      "id": "net_sales",
+      "title": "Net Sales",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "net",
+      "color": "emerald"
+    },
+    {
+      "id": "profit",
+      "title": "Profit",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "profit",
+      "color": "emerald"
+    },
+    {
+      "id": "sale_in_cash",
+      "title": "Sale in Cash",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "cash",
+      "color": "emerald"
+    },
+    {
+      "id": "refund_amount",
+      "title": "Refund Amount",
+      "value": "৳0.00",
+      "trend": "0.00%",
+      "trendDirection": "down",
+      "icon": "refund",
+      "color": "red"
+    }
+  ],
+  "orderMetrics": [
+    {
+      "id": "total_orders",
+      "title": "Total Orders",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "orders",
+      "color": "emerald"
+    },
+    {
+      "id": "pending",
+      "title": "Pending",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "pending",
+      "color": "orange"
+    },
+    {
+      "id": "processing",
+      "title": "Processing",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "processing",
+      "color": "cyan"
+    },
+    {
+      "id": "delivered",
+      "title": "Delivered",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "delivered",
+      "color": "purple"
+    },
+    {
+      "id": "completed",
+      "title": "Completed",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "up",
+      "icon": "completed",
+      "color": "emerald"
+    },
+    {
+      "id": "cancelled",
+      "title": "Cancelled",
+      "value": "0",
+      "trend": "0.00%",
+      "trendDirection": "down",
+      "icon": "cancelled",
+      "color": "red"
+    }
+  ],
+  "salesTrend": [
+    { "date": "Week 1", "sales": 0 },
+    { "date": "Week 2", "sales": 0 },
+    { "date": "Week 3", "sales": 0 }
+  ]
+}

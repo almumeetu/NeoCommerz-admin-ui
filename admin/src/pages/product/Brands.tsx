@@ -46,7 +46,7 @@ export const Brands = () => {
                 <td className="px-6 py-4 text-gray-600">{brand.description}</td>
                 <td className="px-6 py-4 text-gray-600">{brand.createdAt}</td>
                 <td className="px-6 py-4">
-                  <div className={`w-10 h-5 rounded-full relative cursor-pointer ${brand.status ? 'bg-blue-600' : 'bg-gray-200'}`}>
+                  <div className={`w-10 h-5 rounded-full relative cursor-pointer ${brand.status ? 'bg-emerald-600' : 'bg-gray-200'}`}>
                     <div className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-all ${brand.status ? 'left-[22px]' : 'left-0.5'}`}></div>
                   </div>
                 </td>

@@ -10,7 +10,12 @@ import {
   ChevronDown,
   Calendar,
   BarChart2,
-  List
+  List,
+  Clock,
+  RotateCw,
+  Truck,
+  CheckCircle,
+  AlertCircle
 } from 'lucide-react';
 import {
   LineChart,
@@ -22,12 +27,11 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
-export const Dashboard = () => {
+export const EcommerceDashboard = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    // In a real app, this would be a fetch call to an API or local JSON
-    fetch('/src/data/dashboard.json')
+    fetch('/src/data/ecommerce_dashboard.json')
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error('Failed to load dashboard data:', err));
@@ -41,13 +45,19 @@ export const Dashboard = () => {
       case 'net': return <TrendingUp className="w-4 h-4" />;
       case 'profit': return <Briefcase className="w-4 h-4" />;
       case 'cash': return <DollarSign className="w-4 h-4" />;
-      case 'refund': return <FileText className="w-4 h-4 text-red-500" />;
+      case 'refund': return <FileText className="w-4 h-4" />;
+      case 'orders': return <ShoppingCart className="w-4 h-4" />;
+      case 'pending': return <Clock className="w-4 h-4" />;
+      case 'processing': return <RotateCw className="w-4 h-4" />;
+      case 'delivered': return <Truck className="w-4 h-4" />;
+      case 'completed': return <CheckCircle className="w-4 h-4" />;
+      case 'cancelled': return <AlertCircle className="w-4 h-4" />;
       default: return <FileText className="w-4 h-4" />;
     }
   };
 
   return (
-    <div className="p-8 max-w-[1600px] mx-auto">
+    <div className="p-8 max-w-[1600px] mx-auto bg-[#f8f9fa] min-h-screen">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 mb-1">Dashboard</h1>
@@ -67,15 +77,19 @@ export const Dashboard = () => {
           <div className="flex bg-white border border-gray-200 rounded-md overflow-hidden text-sm shadow-sm">
             <button className="px-4 py-2 bg-emerald-500 text-white font-medium">Today</button>
             <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 border-l border-gray-200">Yesterday</button>
-            <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 border-l border-gray-200 font-medium border-b-2 border-b-emerald-500 bg-emerald-50/50">This Week</button>
+            <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 border-l border-gray-200 font-medium">This Week</button>
             <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 border-l border-gray-200">This Month</button>
-            <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 border-l border-gray-200">Custom</button>
+            <div className="flex items-center gap-2 px-4 py-2 text-gray-400 border-l border-gray-200">
+              <span>Select a date</span>
+              <Calendar className="w-4 h-4" />
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        {data?.metrics?.map((metric: any) => (
+      {/* Sales Metrics Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        {data?.salesMetrics?.map((metric: any) => (
           <StatCard
             key={metric.id}
             title={metric.title}
@@ -83,6 +97,22 @@ export const Dashboard = () => {
             trend={metric.trend}
             trendDirection={metric.trendDirection}
             icon={getIcon(metric.icon)}
+            color={metric.color}
+          />
+        ))}
+      </div>
+
+      {/* Order Metrics Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
+        {data?.orderMetrics?.map((metric: any) => (
+          <StatCard
+            key={metric.id}
+            title={metric.title}
+            value={metric.value}
+            trend={metric.trend}
+            trendDirection={metric.trendDirection}
+            icon={getIcon(metric.icon)}
+            color={metric.color}
           />
         ))}
       </div>
@@ -97,7 +127,7 @@ export const Dashboard = () => {
                 <button className="px-3 py-1 text-sm font-medium text-gray-500 hover:text-gray-700">Monthly</button>
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-md text-sm text-gray-600">
-                <span>01/04/26 - 22/04/26</span>
+                <span>01/04/26 - 23/04/26</span>
                 <Calendar className="w-4 h-4 text-gray-400" />
               </div>
             </div>

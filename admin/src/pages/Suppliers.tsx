@@ -45,7 +45,7 @@ export const Suppliers = () => {
                 <td className="px-6 py-4 text-gray-600">{supplier.businessPhone}</td>
                 <td className="px-6 py-4 text-gray-600">{supplier.address}</td>
                 <td className="px-6 py-4">
-                  <div className={`w-10 h-5 rounded-full relative cursor-pointer ${supplier.status ? 'bg-blue-600' : 'bg-gray-200'}`}>
+                  <div className={`w-10 h-5 rounded-full relative cursor-pointer ${supplier.status ? 'bg-emerald-600' : 'bg-gray-200'}`}>
                     <div className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-all ${supplier.status ? 'left-[22px]' : 'left-0.5'}`}></div>
                   </div>
                 </td>

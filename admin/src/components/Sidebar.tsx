@@ -16,7 +16,12 @@ import {
   Search,
   Building,
   LogOut,
-  PanelLeftClose
+  PanelLeftClose,
+  Wrench,
+  Percent,
+  BarChart2,
+  Settings2,
+  Users2
 } from 'lucide-react';
 import clsx from 'clsx';
 import { useState } from 'react';
@@ -61,36 +66,48 @@ const menuGroups = [
   {
     title: 'SALES & BILLING',
     items: [
-      { path: '/warranties', label: 'Warranties', icon: ShieldAlert },
-      { path: '/discount', label: 'Discount', icon: Tags },
+      { path: '/warranties', label: 'Warranties', icon: Wrench },
+      { path: '/discount', label: 'Discount', icon: Percent },
       { path: '/gift-voucher', label: 'Gift Voucher', icon: Gift }
     ]
   },
   {
     title: 'ONLINE STORE',
     items: [
-      { path: '/e-commerce-menu', label: 'E-Commerce', icon: ShoppingCart, hasSubMenu: true }
+      { 
+        path: '/e-commerce-menu', 
+        label: 'E-Commerce', 
+        icon: ShoppingCart, 
+        hasSubMenu: true,
+        subItems: [
+          { path: '/e-commerce/new-orders', label: 'New Orders' },
+          { path: '/e-commerce/canceled-orders', label: 'Canceled Orders' },
+          { path: '/e-commerce/completed-orders', label: 'Completed Orders' },
+          { path: '/e-commerce/reviews', label: 'Reviews' },
+        ]
+      }
     ]
   },
   {
     title: 'FINANCE',
     items: [
-      { path: '/report', label: 'Report', icon: FileText, hasSubMenu: true }
+      { path: '/report', label: 'Report', icon: BarChart2, hasSubMenu: true }
     ]
   },
   {
     title: 'ADMINISTRATION',
     items: [
-      { path: '/access-management', label: 'Access Management', icon: ShieldAlert, hasSubMenu: true },
-      { path: '/settings', label: 'Settings', icon: Settings, hasSubMenu: true }
+      { path: '/access-management', label: 'Access Management', icon: Users2, hasSubMenu: true },
+      { path: '/settings', label: 'Settings', icon: Settings2, hasSubMenu: true }
     ]
   }
 ];
 
 export const Sidebar = () => {
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({
-    'Product': true,
-    'Dashboard': true
+    'Product': false,
+    'Dashboard': true,
+    'E-Commerce': true
   });
 
   const toggleMenu = (label: string) => {
@@ -120,7 +137,7 @@ export const Sidebar = () => {
           <input 
             type="text" 
             placeholder="Search menus..." 
-            className="w-full pl-9 pr-3 py-2 border-b border-gray-100 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full pl-9 pr-3 py-2 border-b border-gray-100 text-sm focus:outline-none focus:border-emerald-500 transition-colors"
           />
         </div>
       </div>
@@ -155,7 +172,7 @@ export const Sidebar = () => {
                         clsx(
                           "flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium transition-colors",
                           isActive
-                            ? "bg-blue-50 text-blue-600"
+                            ? "bg-emerald-50 text-emerald-600"
                             : "text-gray-700 hover:bg-gray-50"
                         )
                       }
@@ -177,7 +194,7 @@ export const Sidebar = () => {
                             clsx(
                               "block px-3 py-1.5 rounded-md text-sm transition-colors",
                               isActive
-                                ? "text-blue-600 font-medium border border-blue-600 rounded-lg"
+                                ? "text-emerald-600 font-medium border border-emerald-600 rounded-lg"
                                 : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
                             )
                           }
@@ -197,7 +214,7 @@ export const Sidebar = () => {
       <div className="p-4 border-t border-gray-100">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-medium">
+            <div className="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-white text-sm font-medium">
               A
             </div>
             <div className="flex flex-col">
