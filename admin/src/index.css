@@ -1,17 +1,108 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #10b981;
-  --color-primary-dark: #059669;
-  --color-background: #f3f4f6;
-  --color-surface: #ffffff;
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
-}
-
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: #f3f4f6;
+  color: #111827;
   -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   MODERN BUTTON STYLES
+   ============================================ */
+
+/* Primary Success Button */
+.btn-success {
+  background: linear-gradient(to right, #10b981, #059669);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+  transition: all 0.2s;
+}
+
+.btn-success:hover {
+  background: linear-gradient(to right, #059669, #047857);
+  box-shadow: 0 20px 25px -5px rgba(5, 150, 105, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Primary Blue Button */
+.btn-primary {
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: linear-gradient(to right, #ef4444, #dc2626);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(to right, #dc2626, #b91c1c);
+  box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Secondary/Ghost Button */
+.btn-secondary {
+  background: white;
+  color: #374151;
+  font-weight: 600;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Danger Ghost Button */
+.btn-danger-ghost {
+  background: #fef2f2;
+  color: #dc2626;
+  font-weight: 600;
+  border: 2px solid #fecaca;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.btn-danger-ghost:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Toast Animation */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
 }

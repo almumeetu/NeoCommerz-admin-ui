@@ -1,0 +1,543 @@
+{
+  "orders": [
+    {
+      "id": "1",
+      "orderNumber": "ORD-2024-001",
+      "customer": {
+        "name": "Karim Ahmed",
+        "phone": "+880 1712-345678",
+        "address": "House 12, Road 5, Dhanmondi, Dhaka"
+      },
+      "items": 3,
+      "amount": 4500,
+      "paymentMethod": "Cash on Delivery",
+      "orderDate": "2024-04-28 10:30 AM",
+      "status": "placed",
+      "deliveryFee": 60,
+      "discount": 0,
+      "products": [
+        {
+          "id": "p1",
+          "name": "Samsung Galaxy A54",
+          "quantity": 1,
+          "price": 2500
+        },
+        {
+          "id": "p2",
+          "name": "Wireless Earbuds",
+          "quantity": 2,
+          "price": 1000
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "orderNumber": "ORD-2024-002",
+      "customer": {
+        "name": "Fatima Rahman",
+        "phone": "+880 1812-987654",
+        "address": "Flat 3B, Gulshan Avenue, Dhaka"
+      },
+      "items": 2,
+      "amount": 3200,
+      "paymentMethod": "bKash",
+      "orderDate": "2024-04-28 11:15 AM",
+      "status": "packaging",
+      "deliveryFee": 80,
+      "discount": 200,
+      "products": [
+        {
+          "id": "p3",
+          "name": "Smart Watch",
+          "quantity": 1,
+          "price": 2000
+        },
+        {
+          "id": "p4",
+          "name": "Phone Case",
+          "quantity": 1,
+          "price": 1200
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "orderNumber": "ORD-2024-003",
+      "customer": {
+        "name": "Rahim Hossain",
+        "phone": "+880 1912-456789",
+        "address": "House 45, Mirpur DOHS, Dhaka"
+      },
+      "items": 5,
+      "amount": 7800,
+      "paymentMethod": "Nagad",
+      "orderDate": "2024-04-28 12:00 PM",
+      "status": "ready",
+      "deliveryFee": 100,
+      "discount": 500,
+      "products": [
+        {
+          "id": "p5",
+          "name": "Laptop Bag",
+          "quantity": 1,
+          "price": 1500
+        },
+        {
+          "id": "p6",
+          "name": "USB Cable",
+          "quantity": 4,
+          "price": 1575
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "orderNumber": "ORD-2024-004",
+      "customer": {
+        "name": "Ayesha Begum",
+        "phone": "+880 1612-234567",
+        "address": "Road 27, Banani, Dhaka"
+      },
+      "items": 1,
+      "amount": 1500,
+      "paymentMethod": "Cash on Delivery",
+      "orderDate": "2024-04-28 01:45 PM",
+      "status": "placed",
+      "deliveryFee": 50,
+      "discount": 0,
+      "products": [
+        {
+          "id": "p7",
+          "name": "Bluetooth Speaker",
+          "quantity": 1,
+          "price": 1500
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "orderNumber": "ORD-2024-005",
+      "customer": {
+        "name": "Sabbir Khan",
+        "phone": "+880 1712-567890",
+        "address": "House 78, Uttara Sector 7, Dhaka"
+      },
+      "items": 4,
+      "amount": 6200,
+      "paymentMethod": "Rocket",
+      "orderDate": "2024-04-28 02:30 PM",
+      "status": "onway",
+      "deliveryFee": 120,
+      "discount": 300,
+      "products": [
+        {
+          "id": "p8",
+          "name": "Power Bank 20000mAh",
+          "quantity": 2,
+          "price": 3000
+        },
+        {
+          "id": "p9",
+          "name": "Screen Protector",
+          "quantity": 2,
+          "price": 1600
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "orderNumber": "ORD-2024-006",
+      "customer": {
+        "name": "Nusrat Jahan",
+        "phone": "+880 1812-111333",
+        "address": "Flat 7D, Mohakhali DOHS, Dhaka"
+      },
+      "items": 2,
+      "amount": 5500,
+      "paymentMethod": "bKash",
+      "orderDate": "2024-04-27 03:00 PM",
+      "status": "delivered",
+      "deliveryFee": 80,
+      "discount": 100,
+      "products": [
+        {
+          "id": "p10",
+          "name": "Wireless Mouse",
+          "quantity": 1,
+          "price": 800
+        },
+        {
+          "id": "p11",
+          "name": "Mechanical Keyboard",
+          "quantity": 1,
+          "price": 4700
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "orderNumber": "ORD-2024-007",
+      "customer": {
+        "name": "Hasan Mahmud",
+        "phone": "+880 1912-222444",
+        "address": "House 34, Bashundhara R/A, Dhaka"
+      },
+      "items": 1,
+      "amount": 2800,
+      "paymentMethod": "Nagad",
+      "orderDate": "2024-04-27 11:00 AM",
+      "status": "failed",
+      "deliveryFee": 60,
+      "discount": 0,
+      "products": [
+        {
+          "id": "p12",
+          "name": "Gaming Headset",
+          "quantity": 1,
+          "price": 2800
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "orderNumber": "ORD-2024-008",
+      "customer": {
+        "name": "Tahmina Akter",
+        "phone": "+880 1612-555777",
+        "address": "Road 12, Dhanmondi, Dhaka"
+      },
+      "items": 3,
+      "amount": 4200,
+      "paymentMethod": "Cash on Delivery",
+      "orderDate": "2024-04-28 09:00 AM",
+      "status": "packaging",
+      "deliveryFee": 70,
+      "discount": 150,
+      "products": [
+        {
+          "id": "p13",
+          "name": "Fitness Tracker",
+          "quantity": 1,
+          "price": 1800
+        },
+        {
+          "id": "p14",
+          "name": "Water Bottle",
+          "quantity": 2,
+          "price": 1200
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "orderNumber": "ORD-2024-009",
+      "customer": {
+        "name": "Rakib Hasan",
+        "phone": "+880 1712-888999",
+        "address": "House 56, Mirpur 10, Dhaka"
+      },
+      "items": 2,
+      "amount": 3500,
+      "paymentMethod": "bKash",
+      "orderDate": "2024-04-28 01:00 PM",
+      "status": "ready",
+      "deliveryFee": 90,
+      "discount": 0,
+      "products": [
+        {
+          "id": "p15",
+          "name": "Webcam HD",
+          "quantity": 1,
+          "price": 2200
+        },
+        {
+          "id": "p16",
+          "name": "Microphone",
+          "quantity": 1,
+          "price": 1300
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "orderNumber": "ORD-2024-010",
+      "customer": {
+        "name": "Sadia Sultana",
+        "phone": "+880 1812-000111",
+        "address": "Flat 2B, Banani, Dhaka"
+      },
+      "items": 1,
+      "amount": 8900,
+      "paymentMethod": "Nagad",
+      "orderDate": "2024-04-27 02:00 PM",
+      "status": "delivered",
+      "deliveryFee": 100,
+      "discount": 500,
+      "products": [
+        {
+          "id": "p17",
+          "name": "Tablet 10 inch",
+          "quantity": 1,
+          "price": 8900
+        }
+      ]
+    }
+  ],
+  "canceledOrders": [
+    {
+      "id": "1",
+      "orderNumber": "ORD-2024-015",
+      "customer": {
+        "name": "Shakib Hassan",
+        "phone": "+880 1712-111222"
+      },
+      "items": 2,
+      "amount": 2500,
+      "orderDate": "2024-04-25 09:00 AM",
+      "canceledDate": "2024-04-25 11:30 AM",
+      "cancelReason": "Customer changed mind",
+      "canceledBy": "customer"
+    },
+    {
+      "id": "2",
+      "orderNumber": "ORD-2024-018",
+      "customer": {
+        "name": "Nadia Islam",
+        "phone": "+880 1812-333444"
+      },
+      "items": 1,
+      "amount": 1200,
+      "orderDate": "2024-04-26 02:15 PM",
+      "canceledDate": "2024-04-26 03:00 PM",
+      "cancelReason": "Product out of stock",
+      "canceledBy": "admin"
+    },
+    {
+      "id": "3",
+      "orderNumber": "ORD-2024-022",
+      "customer": {
+        "name": "Tanvir Ahmed",
+        "phone": "+880 1912-555666"
+      },
+      "items": 4,
+      "amount": 5600,
+      "orderDate": "2024-04-27 10:30 AM",
+      "canceledDate": "2024-04-27 12:00 PM",
+      "cancelReason": "Payment failed",
+      "canceledBy": "system"
+    },
+    {
+      "id": "4",
+      "orderNumber": "ORD-2024-025",
+      "customer": {
+        "name": "Rima Akter",
+        "phone": "+880 1612-777888"
+      },
+      "items": 3,
+      "amount": 3800,
+      "orderDate": "2024-04-27 04:00 PM",
+      "canceledDate": "2024-04-27 05:30 PM",
+      "cancelReason": "Wrong address provided",
+      "canceledBy": "customer"
+    },
+    {
+      "id": "5",
+      "orderNumber": "ORD-2024-028",
+      "customer": {
+        "name": "Imran Khan",
+        "phone": "+880 1512-999000"
+      },
+      "items": 2,
+      "amount": 2900,
+      "orderDate": "2024-04-28 08:00 AM",
+      "canceledDate": "2024-04-28 09:15 AM",
+      "cancelReason": "Delivery time too long",
+      "canceledBy": "customer"
+    }
+  ],
+  "completedOrders": [
+    {
+      "id": "1",
+      "orderNumber": "ORD-2024-005",
+      "customer": {
+        "name": "Mahmud Hasan",
+        "phone": "+880 1712-123456",
+        "address": "House 23, Road 11, Uttara, Dhaka"
+      },
+      "items": 3,
+      "amount": 4200,
+      "paymentMethod": "bKash",
+      "orderDate": "2024-04-20 10:00 AM",
+      "completedDate": "2024-04-22 03:30 PM",
+      "deliveryTime": "2 days"
+    },
+    {
+      "id": "2",
+      "orderNumber": "ORD-2024-008",
+      "customer": {
+        "name": "Sadia Rahman",
+        "phone": "+880 1812-654321",
+        "address": "Flat 5C, Bashundhara R/A, Dhaka"
+      },
+      "items": 2,
+      "amount": 3500,
+      "paymentMethod": "Cash on Delivery",
+      "orderDate": "2024-04-21 02:15 PM",
+      "completedDate": "2024-04-23 11:00 AM",
+      "deliveryTime": "1.5 days"
+    },
+    {
+      "id": "3",
+      "orderNumber": "ORD-2024-011",
+      "customer": {
+        "name": "Rafiq Ahmed",
+        "phone": "+880 1912-789012",
+        "address": "House 67, Mohammadpur, Dhaka"
+      },
+      "items": 5,
+      "amount": 8900,
+      "paymentMethod": "Nagad",
+      "orderDate": "2024-04-22 09:30 AM",
+      "completedDate": "2024-04-24 04:00 PM",
+      "deliveryTime": "2 days"
+    },
+    {
+      "id": "4",
+      "orderNumber": "ORD-2024-013",
+      "customer": {
+        "name": "Nasrin Akter",
+        "phone": "+880 1612-345678",
+        "address": "Road 15, Banani, Dhaka"
+      },
+      "items": 1,
+      "amount": 1800,
+      "paymentMethod": "bKash",
+      "orderDate": "2024-04-23 11:00 AM",
+      "completedDate": "2024-04-24 02:30 PM",
+      "deliveryTime": "1 day"
+    },
+    {
+      "id": "5",
+      "orderNumber": "ORD-2024-016",
+      "customer": {
+        "name": "Kamal Uddin",
+        "phone": "+880 1512-901234",
+        "address": "House 89, Dhanmondi, Dhaka"
+      },
+      "items": 4,
+      "amount": 6700,
+      "paymentMethod": "Cash on Delivery",
+      "orderDate": "2024-04-24 01:00 PM",
+      "completedDate": "2024-04-26 10:00 AM",
+      "deliveryTime": "1.5 days"
+    },
+    {
+      "id": "6",
+      "orderNumber": "ORD-2024-019",
+      "customer": {
+        "name": "Farhana Begum",
+        "phone": "+880 1712-567890",
+        "address": "Flat 2A, Gulshan 2, Dhaka"
+      },
+      "items": 2,
+      "amount": 3200,
+      "paymentMethod": "Nagad",
+      "orderDate": "2024-04-25 03:30 PM",
+      "completedDate": "2024-04-27 12:00 PM",
+      "deliveryTime": "1.5 days"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "orderNumber": "ORD-2024-005",
+      "customer": {
+        "name": "Mahmud Hasan"
+      },
+      "product": "Samsung Galaxy S24 Ultra",
+      "rating": 5,
+      "comment": "Excellent product! Fast delivery and great packaging. The phone works perfectly and exceeded my expectations. Highly recommended!",
+      "date": "2024-04-23 02:30 PM",
+      "helpful": 12,
+      "status": "approved"
+    },
+    {
+      "id": "2",
+      "orderNumber": "ORD-2024-008",
+      "customer": {
+        "name": "Sadia Rahman"
+      },
+      "product": "Apple AirPods Pro 2",
+      "rating": 4,
+      "comment": "Good quality sound and noise cancellation. Battery life is decent. Only issue is the price is a bit high.",
+      "date": "2024-04-24 10:15 AM",
+      "helpful": 8,
+      "status": "approved"
+    },
+    {
+      "id": "3",
+      "orderNumber": "ORD-2024-011",
+      "customer": {
+        "name": "Rafiq Ahmed"
+      },
+      "product": "Dell XPS 15 Laptop",
+      "rating": 5,
+      "comment": "Amazing laptop for work and gaming. The display is stunning and performance is top-notch. Worth every penny!",
+      "date": "2024-04-25 04:45 PM",
+      "helpful": 15,
+      "status": "approved"
+    },
+    {
+      "id": "4",
+      "orderNumber": "ORD-2024-013",
+      "customer": {
+        "name": "Nasrin Akter"
+      },
+      "product": "Sony WH-1000XM5 Headphones",
+      "rating": 3,
+      "comment": "Sound quality is good but comfort could be better for long sessions. Noise cancellation works well.",
+      "date": "2024-04-26 11:00 AM",
+      "helpful": 5,
+      "status": "pending"
+    },
+    {
+      "id": "5",
+      "orderNumber": "ORD-2024-016",
+      "customer": {
+        "name": "Kamal Uddin"
+      },
+      "product": "iPhone 15 Pro Max",
+      "rating": 5,
+      "comment": "Best iPhone yet! Camera quality is incredible and the titanium design feels premium. Battery lasts all day.",
+      "date": "2024-04-27 09:30 AM",
+      "helpful": 20,
+      "status": "approved"
+    },
+    {
+      "id": "6",
+      "orderNumber": "ORD-2024-019",
+      "customer": {
+        "name": "Farhana Begum"
+      },
+      "product": "Samsung 55\" QLED TV",
+      "rating": 4,
+      "comment": "Great picture quality and smart features. Setup was easy. Would give 5 stars if the remote was better.",
+      "date": "2024-04-27 03:15 PM",
+      "helpful": 7,
+      "status": "approved"
+    },
+    {
+      "id": "7",
+      "orderNumber": "ORD-2024-021",
+      "customer": {
+        "name": "Tanvir Hossain"
+      },
+      "product": "Canon EOS R6 Camera",
+      "rating": 2,
+      "comment": "Product arrived with minor scratches. Performance is okay but expected better quality for the price.",
+      "date": "2024-04-28 01:00 PM",
+      "helpful": 3,
+      "status": "pending"
+    }
+  ]
+}

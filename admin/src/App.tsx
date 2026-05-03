@@ -20,6 +20,12 @@ import { Settings } from './pages/Settings';
 import { AccessManagement } from './pages/AccessManagement';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
+// E-Commerce Pages
+import { NewOrders } from './pages/e-commerce/NewOrders';
+import { CanceledOrders } from './pages/e-commerce/CanceledOrders';
+import { CompletedOrders } from './pages/e-commerce/CompletedOrders';
+import { Reviews } from './pages/e-commerce/Reviews';
+
 // Protected Route Component
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -66,6 +72,13 @@ function AppRoutes() {
         <Route path="stock" element={<Stock />} />
         <Route path="discount" element={<Discount />} />
         <Route path="gift-voucher" element={<GiftVoucher />} />
+        
+        {/* E-Commerce Routes */}
+        <Route path="e-commerce/new-orders" element={<NewOrders />} />
+        <Route path="e-commerce/canceled-orders" element={<CanceledOrders />} />
+        <Route path="e-commerce/completed-orders" element={<CompletedOrders />} />
+        <Route path="e-commerce/reviews" element={<Reviews />} />
+        
         <Route path="e-commerce/:status" element={<Orders />} />
         <Route path="finance/sale-report" element={<GenericFinancePage title="Sale Report" />} />
         <Route path="finance/inventory-report" element={<InventoryReport />} />
