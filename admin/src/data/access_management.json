@@ -1,0 +1,13 @@
+{
+  "users": [
+    { "id": 1, "name": "Am Saikat", "email": "amsaikat@neocommerz.com", "role": "Super Admin", "status": "active" },
+    { "id": 2, "name": "Zahir Islam", "email": "zahir@softzino.com", "role": "Manager", "status": "active" },
+    { "id": 3, "name": "Rina Begum", "email": "rina@neocommerz.com", "role": "Administrator", "status": "inactive" }
+  ],
+  "roles": [
+    { "id": 1, "name": "Super Admin", "permissions": "Full Access", "users": 1, "status": true },
+    { "id": 2, "name": "Manager", "permissions": "Orders, Products, Reports", "users": 3, "status": true },
+    { "id": 3, "name": "Administrator", "permissions": "Products, Stock, Settings", "users": 2, "status": true },
+    { "id": 4, "name": "Sales Staff", "permissions": "Orders, Customers", "users": 5, "status": false }
+  ]
+}

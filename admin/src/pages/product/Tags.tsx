@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
 interface Tag {
   id: number;
@@ -10,18 +11,26 @@ interface Tag {
   status: boolean;
 }
 
-const initialTags: Tag[] = [
-  { id: 1, name: 'Tranding', createdOn: 'February 26, 2026', status: true },
-  { id: 2, name: 'Top Sell', createdOn: 'February 26, 2026', status: true },
-  { id: 3, name: 'Popular', createdOn: 'February 26, 2028', status: true },
-];
-
 export const Tags = () => {
-  const [tags, setTags] = useState<Tag[]>(initialTags);
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTag, setEditingTag] = useState<Tag | null>(null);
   const [tagName, setTagName] = useState('');
+
+  useEffect(() => {
+    fetch('/src/data/products.json')
+      .then(res => res.json())
+      .then(json => {
+        setTags(json.tags.map((t: any) => ({
+          ...t,
+          createdOn: t.createdOn || 'February 26, 2026' // Default if not present
+        })));
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const filteredTags = tags.filter(tag => 
     tag.name.toLowerCase().includes(search.toLowerCase())
@@ -70,6 +79,8 @@ export const Tags = () => {
       setTags(tags.filter(tag => tag.id !== id));
     }
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">

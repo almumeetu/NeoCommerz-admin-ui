@@ -1,0 +1,7 @@
+[
+  { "id": "#ORD-001", "customer": "John Doe", "date": "2026-04-20", "total": "৳12,000", "status": "new" },
+  { "id": "#ORD-002", "customer": "Sarah Khan", "date": "2026-04-21", "total": "৳5,500", "status": "completed" },
+  { "id": "#ORD-003", "customer": "Imran Hossain", "date": "2026-04-22", "total": "৳22,300", "status": "canceled" },
+  { "id": "#ORD-004", "customer": "Aisha Rahman", "date": "2026-04-23", "total": "৳1,200", "status": "new" },
+  { "id": "#ORD-005", "customer": "Rakib Ahmed", "date": "2026-04-24", "total": "৳45,000", "status": "completed" }
+]

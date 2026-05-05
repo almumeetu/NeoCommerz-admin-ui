@@ -3,8 +3,8 @@
     {
       "id": "total_transactions",
       "title": "Total Transactions",
-      "value": "0",
-      "trend": "0.00%",
+      "value": "1,248",
+      "trend": "+12.5%",
       "trendDirection": "up",
       "icon": "transaction",
       "color": "emerald"
@@ -12,8 +12,8 @@
     {
       "id": "average_sale",
       "title": "Average Sale",
-      "value": "৳0.00",
-      "trend": "0.00%",
+      "value": "৳386.50",
+      "trend": "+2.4%",
       "trendDirection": "up",
       "icon": "sale",
       "color": "emerald"
@@ -21,8 +21,8 @@
     {
       "id": "daily_average_sale",
       "title": "Daily Average Sale",
-      "value": "৳0.00",
-      "trend": "0.00%",
+      "value": "৳15,460",
+      "trend": "+5.1%",
       "trendDirection": "up",
       "icon": "sale_daily",
       "color": "emerald"
@@ -30,8 +30,8 @@
     {
       "id": "net_sales",
       "title": "Net Sales",
-      "value": "৳0.00",
-      "trend": "0.00%",
+      "value": "৳4,82,350",
+      "trend": "+8.2%",
       "trendDirection": "up",
       "icon": "net",
       "color": "emerald"
@@ -39,8 +39,8 @@
     {
       "id": "profit",
       "title": "Profit",
-      "value": "৳0.00",
-      "trend": "0.00%",
+      "value": "৳1,42,800",
+      "trend": "+10.4%",
       "trendDirection": "up",
       "icon": "profit",
       "color": "emerald"
@@ -48,8 +48,8 @@
     {
       "id": "sale_in_cash",
       "title": "Sale in Cash",
-      "value": "৳0.00",
-      "trend": "0.00%",
+      "value": "৳3,12,000",
+      "trend": "+3.2%",
       "trendDirection": "up",
       "icon": "cash",
       "color": "emerald"
@@ -57,8 +57,8 @@
     {
       "id": "refund_amount",
       "title": "Refund Amount",
-      "value": "৳0.00",
-      "trend": "0.00%",
+      "value": "৳12,400",
+      "trend": "-2.1%",
       "trendDirection": "down",
       "icon": "refund",
       "color": "red"
@@ -68,8 +68,8 @@
     {
       "id": "total_orders",
       "title": "Total Orders",
-      "value": "0",
-      "trend": "0.00%",
+      "value": "1,248",
+      "trend": "+8.2%",
       "trendDirection": "up",
       "icon": "orders",
       "color": "emerald"
@@ -77,8 +77,8 @@
     {
       "id": "pending",
       "title": "Pending",
-      "value": "0",
-      "trend": "0.00%",
+      "value": "42",
+      "trend": "+5.4%",
       "trendDirection": "up",
       "icon": "pending",
       "color": "orange"
@@ -86,17 +86,17 @@
     {
       "id": "processing",
       "title": "Processing",
-      "value": "0",
-      "trend": "0.00%",
-      "trendDirection": "up",
+      "value": "18",
+      "trend": "-2.1%",
+      "trendDirection": "down",
       "icon": "processing",
       "color": "cyan"
     },
     {
       "id": "delivered",
       "title": "Delivered",
-      "value": "0",
-      "trend": "0.00%",
+      "value": "1,152",
+      "trend": "+9.8%",
       "trendDirection": "up",
       "icon": "delivered",
       "color": "purple"
@@ -104,8 +104,8 @@
     {
       "id": "completed",
       "title": "Completed",
-      "value": "0",
-      "trend": "0.00%",
+      "value": "1,145",
+      "trend": "+10.2%",
       "trendDirection": "up",
       "icon": "completed",
       "color": "emerald"
@@ -113,16 +113,37 @@
     {
       "id": "cancelled",
       "title": "Cancelled",
-      "value": "0",
-      "trend": "0.00%",
+      "value": "36",
+      "trend": "-1.5%",
       "trendDirection": "down",
       "icon": "cancelled",
       "color": "red"
     }
   ],
   "salesTrend": [
-    { "date": "Week 1", "sales": 0 },
-    { "date": "Week 2", "sales": 0 },
-    { "date": "Week 3", "sales": 0 }
+    { "date": "Mon", "sales": 40000 },
+    { "date": "Tue", "sales": 30000 },
+    { "date": "Wed", "sales": 60000 },
+    { "date": "Thu", "sales": 80000 },
+    { "date": "Fri", "sales": 50000 },
+    { "date": "Sat", "sales": 90000 },
+    { "date": "Sun", "sales": 70000 }
+  ],
+  "recentCustomers": [
+    { "name": "John Doe", "email": "john@example.com", "spent": "৳12,400" },
+    { "name": "Sarah Khan", "email": "sarah@example.com", "spent": "৳8,200" },
+    { "name": "Am Saikat", "email": "saikat@example.com", "spent": "৳45,000" },
+    { "name": "Tanvir Hossain", "email": "tanvir@example.com", "spent": "৳15,300" }
+  ],
+  "topProducts": [
+    { "name": "Smart Watch Series 7", "sales": 124, "growth": "+12%" },
+    { "name": "Sony WH-1000XM4", "sales": 86, "growth": "+8%" },
+    { "name": "Logitech G Pro", "sales": 64, "growth": "-2%" },
+    { "name": "Mechanical Keyboard", "sales": 52, "growth": "+15%" }
+  ],
+  "paymentMethods": [
+    { "method": "Cash on Delivery", "percentage": 65, "color": "bg-emerald-500" },
+    { "method": "Online Payment", "percentage": 25, "color": "bg-blue-500" },
+    { "method": "Gift Voucher", "percentage": 10, "color": "bg-orange-500" }
   ]
 }

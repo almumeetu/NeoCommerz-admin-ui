@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
 interface Brand {
   id: number;
@@ -11,20 +12,23 @@ interface Brand {
   status: boolean;
 }
 
-const initialBrands: Brand[] = [
-  { id: 1, name: 'HP IPS', description: '-', createdAt: 'February 26, 2026', status: true },
-  { id: 2, name: 'Huawei', description: '-', createdAt: 'February 26, 2026', status: true },
-  { id: 3, name: 'Vivo', description: '-', createdAt: 'February 26, 2026', status: true },
-  { id: 4, name: 'Oppo', description: '-', createdAt: 'February 26, 2026', status: true },
-  { id: 5, name: 'Realme', description: '-', createdAt: 'February 28, 2026', status: true },
-];
-
 export const Brands = () => {
-  const [brands, setBrands] = useState<Brand[]>(initialBrands);
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingBrand, setEditingBrand] = useState<Brand | null>(null);
   const [formData, setFormData] = useState({ name: '', description: '' });
+
+  useEffect(() => {
+    fetch('/src/data/products.json')
+      .then(res => res.json())
+      .then(json => {
+        setBrands(json.brands || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const filteredBrands = brands.filter(brand => 
     brand.name.toLowerCase().includes(search.toLowerCase())
@@ -33,7 +37,7 @@ export const Brands = () => {
   const handleOpenModal = (brand?: Brand) => {
     if (brand) {
       setEditingBrand(brand);
-      setFormData({ name: brand.name, description: brand.description });
+      setFormData({ name: brand.name, description: brand.description || '-' });
     } else {
       setEditingBrand(null);
       setFormData({ name: '', description: '' });
@@ -58,6 +62,8 @@ export const Brands = () => {
     }
     setIsModalOpen(false);
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">
@@ -87,8 +93,8 @@ export const Brands = () => {
             {filteredBrands.map((brand) => (
               <tr key={brand.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-6 py-4 text-gray-600 font-medium">{brand.name}</td>
-                <td className="px-6 py-4 text-gray-600">{brand.description}</td>
-                <td className="px-6 py-4 text-gray-600">{brand.createdAt}</td>
+                <td className="px-6 py-4 text-gray-600">{brand.description || '-'}</td>
+                <td className="px-6 py-4 text-gray-600">{brand.createdAt || 'N/A'}</td>
                 <td className="px-6 py-4">
                   <button 
                     onClick={() => setBrands(brands.map(b => b.id === brand.id ? { ...b, status: !b.status } : b))}

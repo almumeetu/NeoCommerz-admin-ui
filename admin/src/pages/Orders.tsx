@@ -1,18 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { PageHeader, SectionHeader } from '../components/PageHeaders';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 import { Eye, Printer } from 'lucide-react';
-
-const initialOrders = [
-  { id: '#ORD-001', customer: 'John Doe', date: '2026-04-20', total: '৳12,000', status: 'new' },
-  { id: '#ORD-002', customer: 'Sarah Khan', date: '2026-04-21', total: '৳5,500', status: 'completed' },
-  { id: '#ORD-003', customer: 'Imran Hossain', date: '2026-04-22', total: '৳22,300', status: 'canceled' },
-];
 
 export const Orders = () => {
   const { status } = useParams();
-  const [orders] = useState(initialOrders);
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    fetch('/src/data/orders.json')
+      .then(res => res.json())
+      .then(json => {
+        setOrders(json);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const filteredOrders = orders.filter(o => {
     const matchesSearch = o.customer.toLowerCase().includes(search.toLowerCase()) || o.id.includes(search);
@@ -28,6 +34,8 @@ export const Orders = () => {
       default: return 'bg-gray-50 text-gray-600 border-gray-100';
     }
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">

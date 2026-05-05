@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Edit, Eye, Trash2, Package, LayoutGrid, List as ListIcon } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 import clsx from 'clsx';
 
 interface Product {
@@ -16,14 +17,9 @@ interface Product {
   image?: string;
 }
 
-const initialProducts: Product[] = [
-  { id: 1, name: 'Smart Watch Series 7', category: 'Watch', brand: 'Apple', price: '45000', stock: 12, status: true, description: 'Advanced fitness tracking and health monitoring.' },
-  { id: 2, name: 'Logitech G Pro Keyboard', category: 'Computer Accessories', brand: 'Logitech', price: '12500', stock: 8, status: true, description: 'Mechanical gaming keyboard with RGB.' },
-  { id: 3, name: 'Sony WH-1000XM4', category: 'Gadgets', brand: 'Sony', price: '32000', stock: 5, status: true, description: 'Industry-leading noise canceling headphones.' },
-];
-
 export const Products = () => {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +33,16 @@ export const Products = () => {
     description: '',
     status: true
   });
+
+  useEffect(() => {
+    fetch('/src/data/products.json')
+      .then(res => res.json())
+      .then(json => {
+        setProducts(json.products);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const filteredProducts = products.filter(p => 
     p.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -78,6 +84,8 @@ export const Products = () => {
     }
     setIsModalOpen(false);
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">

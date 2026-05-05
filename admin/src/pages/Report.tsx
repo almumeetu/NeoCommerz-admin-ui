@@ -1,17 +1,33 @@
+import { useState, useEffect } from 'react';
 import { PageHeader } from '../components/PageHeaders';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { Calendar, Download, TrendingUp } from 'lucide-react';
-
-const data = [
-  { name: 'Jan', value: 4000 },
-  { name: 'Feb', value: 3000 },
-  { name: 'Mar', value: 2000 },
-  { name: 'Apr', value: 2780 },
-  { name: 'May', value: 1890 },
-  { name: 'Jun', value: 2390 },
-];
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const Report = () => {
+  const [data, setData] = useState<any[]>([]);
+  const [stats, setStats] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/src/data/finance.json')
+      .then(res => res.json())
+      .then(json => {
+        setData(json.revenueAnalysis || []);
+        const s = json.saleReport.summary;
+        setStats([
+          { label: 'Total Revenue', value: s.totalSales, growth: '+12.5%' },
+          { label: 'Total Orders', value: s.totalOrders.toString(), growth: '+8.2%' },
+          { label: 'Avg Order Value', value: s.avgOrderValue, growth: '+2.4%' },
+          { label: 'Refunds', value: s.refunds, growth: '-1.1%' },
+        ]);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return <LoadingSpinner />;
+
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">
       <div className="flex items-center justify-between mb-8">
@@ -23,15 +39,10 @@ export const Report = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        {[
-          { label: 'Total Revenue', value: '৳4,50,000', growth: '+12.5%' },
-          { label: 'Total Orders', value: '1,240', growth: '+8.2%' },
-          { label: 'Avg Order Value', value: '৳3,620', growth: '+2.4%' },
-          { label: 'Customer Growth', value: '15%', growth: '+5.1%' },
-        ].map((stat, i) => (
-          <div key={i} className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
+        {stats.map((stat, i) => (
+          <div key={i} className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:border-emerald-100 transition-all group">
             <p className="text-gray-500 text-sm mb-1">{stat.label}</p>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">{stat.value}</h3>
             <div className="flex items-center gap-1 text-emerald-600 text-xs font-bold">
               <TrendingUp className="w-3 h-3" />
               {stat.growth}

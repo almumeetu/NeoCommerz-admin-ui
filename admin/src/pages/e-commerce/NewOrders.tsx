@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, MessageSquare, Package, Clock, DollarSign, User, Phone, MapPin, ShoppingBag, Truck, CheckCircle, XCircle, Check, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
-import type { Order } from '../../types/types';
-import ecommerceData from '../../data/e-commerce.json';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
 type TabKey = 'placed' | 'packaging' | 'ready' | 'onway' | 'delivered' | 'failed';
 
@@ -9,7 +8,8 @@ export const NewOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState<TabKey>('placed');
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [orders, setOrders] = useState<Order[]>(ecommerceData.orders as Order[]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
   const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
     show: false,
@@ -17,7 +17,16 @@ export const NewOrders = () => {
     type: 'success'
   });
 
-  // Auto hide toast after 3 seconds
+  useEffect(() => {
+    fetch('/src/data/e-commerce.json')
+      .then(res => res.json())
+      .then(json => {
+        setOrders(json.orders as Order[]);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
   useEffect(() => {
     if (toast.show) {
       const timer = setTimeout(() => {
@@ -27,7 +36,6 @@ export const NewOrders = () => {
     }
   }, [toast.show]);
 
-  // Tab configuration with dynamic counts
   const tabs = useMemo(() => {
     const getCount = (status: TabKey) => orders.filter(o => o.status === status).length;
     
@@ -41,7 +49,6 @@ export const NewOrders = () => {
     ];
   }, [orders]);
 
-  // Get status badge color
   const getStatusColor = (status: TabKey) => {
     const colors = {
       placed: 'bg-blue-50 text-blue-700 border-blue-200',
@@ -54,7 +61,6 @@ export const NewOrders = () => {
     return colors[status] || 'bg-gray-100 text-gray-700 border-gray-200';
   };
 
-  // Filter orders by active tab and search term
   const filteredOrders = useMemo(() => {
     return orders
       .filter(order => order.status === activeTab)
@@ -65,7 +71,6 @@ export const NewOrders = () => {
       );
   }, [orders, activeTab, searchTerm]);
 
-  // Calculate totals for selected order
   const orderTotals = useMemo(() => {
     if (!selectedOrder) return null;
     
@@ -77,7 +82,6 @@ export const NewOrders = () => {
     return { subtotal, deliveryFee, discount, total };
   }, [selectedOrder]);
 
-  // Export orders function
   const handleExport = () => {
     const dataStr = JSON.stringify(filteredOrders, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
@@ -90,11 +94,9 @@ export const NewOrders = () => {
     showToast(`Exported ${filteredOrders.length} orders successfully`);
   };
 
-  // Handle order status change
   const handleStatusChange = (newStatus: TabKey) => {
     if (!selectedOrder) return;
 
-    // Update orders array with new status
     const updatedOrders = orders.map(order => 
       order.id === selectedOrder.id 
         ? { ...order, status: newStatus }
@@ -102,15 +104,12 @@ export const NewOrders = () => {
     );
     
     setOrders(updatedOrders);
-    
-    // Update selected order
+
     const updatedSelectedOrder = { ...selectedOrder, status: newStatus };
     setSelectedOrder(updatedSelectedOrder);
-    
-    // Switch to the new status tab
+
     setActiveTab(newStatus);
-    
-    // Show success message
+
     const statusLabels: Record<TabKey, string> = {
       placed: 'Order Placed',
       packaging: 'Packaging',
@@ -127,10 +126,11 @@ export const NewOrders = () => {
     });
   };
 
-  // Show toast notification
   const showToast = (message: string, type: 'success' | 'error' = 'success') => {
     setToast({ show: true, message, type });
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">

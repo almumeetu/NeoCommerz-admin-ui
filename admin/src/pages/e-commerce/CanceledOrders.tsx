@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, MessageSquare, XCircle, Calendar, DollarSign, User, Phone, AlertCircle, Check, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
-import type { CanceledOrder } from '../../types/types';
-import ecommerceData from '../../data/e-commerce.json';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
 type CancelFilterKey = 'all' | 'customer' | 'admin' | 'system';
 
@@ -9,7 +8,8 @@ export const CanceledOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterBy, setFilterBy] = useState<CancelFilterKey>('all');
   const [selectedOrder, setSelectedOrder] = useState<CanceledOrder | null>(null);
-  const [orders] = useState<CanceledOrder[]>(ecommerceData.canceledOrders as CanceledOrder[]);
+  const [orders, setOrders] = useState<CanceledOrder[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
   const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
     show: false,
@@ -17,7 +17,16 @@ export const CanceledOrders = () => {
     type: 'success'
   });
 
-  // Auto hide toast after 3 seconds
+  useEffect(() => {
+    fetch('/src/data/e-commerce.json')
+      .then(res => res.json())
+      .then(json => {
+        setOrders(json.canceledOrders as CanceledOrder[]);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
   useEffect(() => {
     if (toast.show) {
       const timer = setTimeout(() => {
@@ -27,7 +36,6 @@ export const CanceledOrders = () => {
     }
   }, [toast.show]);
 
-  // Filter configuration with dynamic counts
   const filters = useMemo(() => {
     const getCount = (type: CancelFilterKey) => 
       type === 'all' ? orders.length : orders.filter(o => o.canceledBy === type).length;
@@ -49,7 +57,6 @@ export const CanceledOrders = () => {
     return colors[canceledBy as keyof typeof colors] || 'bg-gray-100 text-gray-700 border-gray-200';
   };
 
-  // Filter orders
   const filteredOrders = useMemo(() => {
     return orders
       .filter(order => filterBy === 'all' || order.canceledBy === filterBy)
@@ -60,7 +67,6 @@ export const CanceledOrders = () => {
       );
   }, [orders, filterBy, searchTerm]);
 
-  // Calculate statistics
   const stats = useMemo(() => {
     const totalAmount = orders.reduce((sum, order) => sum + order.amount, 0);
     return {
@@ -82,6 +88,8 @@ export const CanceledOrders = () => {
     URL.revokeObjectURL(url);
     setToast({ show: true, message: `Exported ${filteredOrders.length} canceled orders`, type: 'success' });
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">

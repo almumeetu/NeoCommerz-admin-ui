@@ -1,0 +1,82 @@
+{
+  "branches": [
+    { "id": 1, "name": "Main Branch", "location": "Dhaka, Bangladesh", "phone": "+880 1700-000001", "manager": "Am Saikat", "status": true },
+    { "id": 2, "name": "Chittagong Branch", "location": "Chittagong, Bangladesh", "phone": "+880 1700-000002", "manager": "Zahir Islam", "status": true },
+    { "id": 3, "name": "Sylhet Branch", "location": "Sylhet, Bangladesh", "phone": "+880 1700-000003", "manager": "Rina Begum", "status": false }
+  ],
+  "registers": [
+    { "id": 1, "name": "Register 1", "branch": "Main Branch", "cashier": "Am Saikat", "status": true },
+    { "id": 2, "name": "Register 2", "branch": "Main Branch", "cashier": "Rina Begum", "status": true },
+    { "id": 3, "name": "CTG-Register 1", "branch": "Chittagong Branch", "cashier": "Zahir Islam", "status": false }
+  ],
+  "customerGroups": [
+    { "id": 1, "name": "VIP", "discount": "10%", "members": 45, "status": true },
+    { "id": 2, "name": "Regular", "discount": "0%", "members": 1250, "status": true },
+    { "id": 3, "name": "Wholesale", "discount": "20%", "members": 12, "status": true },
+    { "id": 4, "name": "Staff", "discount": "30%", "members": 8, "status": false }
+  ],
+  "discountRules": [
+    { "id": 1, "name": "Summer Sale", "type": "Percentage", "value": "15%", "status": true },
+    { "id": 2, "name": "Welcome Bonus", "type": "Fixed", "value": "50 ৳", "status": false },
+    { "id": 3, "name": "Bulk Discount", "type": "Percentage", "value": "5%", "status": true }
+  ],
+  "warrantyPolicies": [
+    { "id": 1, "name": "1 Year Standard", "duration": "12 Months", "type": "Replacement", "status": true },
+    { "id": 2, "name": "6 Months Service", "duration": "6 Months", "type": "Service", "status": true },
+    { "id": 3, "name": "2 Year Extended", "duration": "24 Months", "type": "Parts", "status": false }
+  ],
+  "messageTemplates": [
+    { "id": 1, "name": "Welcome Message", "channel": "SMS", "status": true },
+    { "id": 2, "name": "Abandoned Cart", "channel": "Email", "status": true },
+    { "id": 3, "name": "Order Shipped", "channel": "SMS", "status": true },
+    { "id": 4, "name": "Monthly Newsletter", "channel": "Email", "status": false }
+  ],
+  "loyaltyProgram": {
+    "pointsPerCurrency": 10,
+    "minimumPointsToRedeem": 100,
+    "pointsValueInCurrency": 1,
+    "enableExpiry": true,
+    "expiryMonths": 12,
+    "enableTiered": false,
+    "status": true
+  },
+  "giftVouchers": [
+    { "id": 1, "code": "WELCOME50", "value": "৳50", "type": "Fixed", "expiryDate": "2026-12-31", "usedCount": 5, "status": true },
+    { "id": 2, "code": "SUMMER15", "value": "15%", "type": "Percentage", "expiryDate": "2026-08-31", "usedCount": 23, "status": true },
+    { "id": 3, "code": "EID2026", "value": "৳200", "type": "Fixed", "expiryDate": "2026-04-01", "usedCount": 102, "status": false }
+  ],
+  "storeCreditRefund": {
+    "enableStoreCredit": true,
+    "enableRefund": true,
+    "refundChannel": "original",
+    "storeCreditConversionRate": 1,
+    "maxRefundDays": 30
+  },
+  "siteSettings": {
+    "siteName": "NeoCommerz",
+    "siteUrl": "https://neocommerz.com",
+    "supportEmail": "support@neocommerz.com",
+    "currency": "BDT",
+    "timezone": "Asia/Dhaka",
+    "language": "en"
+  },
+  "inventorySettings": {
+    "enableLowStockAlert": true,
+    "lowStockThreshold": 10,
+    "allowBackorders": false,
+    "autoUpdateStock": true
+  },
+  "posSettings": {
+    "enableBarcodeScanner": true,
+    "autoPrintReceipt": false,
+    "enableCashDrawer": true,
+    "defaultTaxRate": 0
+  },
+  "notificationSettings": {
+    "orderConfirmationEmail": true,
+    "orderShippedEmail": true,
+    "orderDeliveredEmail": false,
+    "promotionalEmails": false,
+    "smsOrderUpdates": true
+  }
+}

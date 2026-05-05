@@ -1,0 +1,68 @@
+{
+  "saleReport": {
+    "summary": {
+      "totalSales": "৳4,82,350",
+      "totalOrders": 1248,
+      "avgOrderValue": "৳386",
+      "refunds": "৳12,400"
+    },
+    "rows": [
+      { "id": 1, "date": "2026-05-01", "invoiceNo": "INV-001", "customer": "John Doe", "items": 3, "total": "৳4,200", "status": "Paid" },
+      { "id": 2, "date": "2026-05-02", "invoiceNo": "INV-002", "customer": "Sarah Khan", "items": 1, "total": "৳18,500", "status": "Paid" },
+      { "id": 3, "date": "2026-05-03", "invoiceNo": "INV-003", "customer": "Am Saikat", "items": 5, "total": "৳22,300", "status": "Pending" },
+      { "id": 4, "date": "2026-05-04", "invoiceNo": "INV-004", "customer": "Reza Hossain", "items": 2, "total": "৳6,400", "status": "Paid" },
+      { "id": 5, "date": "2026-05-05", "invoiceNo": "INV-005", "customer": "Nadia Akter", "items": 4, "total": "৳11,800", "status": "Paid" }
+    ]
+  },
+  "inventoryReport": {
+    "summary": {
+      "totalProducts": 5,
+      "inStock": 3,
+      "lowStock": 2,
+      "outOfStock": 1
+    },
+    "rows": [
+      { "id": 1, "product": "Smart Watch Series 7", "sku": "SW-001", "openingStock": 50, "received": 0, "sold": 20, "closingStock": 30, "value": "৳7,49,970" },
+      { "id": 2, "product": "Sony WH-1000XM4", "sku": "SON-002", "openingStock": 20, "received": 0, "sold": 8, "closingStock": 12, "value": "৳2,22,000" },
+      { "id": 3, "product": "Logitech G Pro Mouse", "sku": "LG-003", "openingStock": 15, "received": 0, "sold": 15, "closingStock": 0, "value": "৳0" },
+      { "id": 4, "product": "Samsung Galaxy Tab S8", "sku": "SAM-004", "openingStock": 10, "received": 0, "sold": 3, "closingStock": 7, "value": "৳4,34,000" },
+      { "id": 5, "product": "Mechanical Keyboard RGB", "sku": "KB-005", "openingStock": 30, "received": 10, "sold": 12, "closingStock": 28, "value": "৳89,600" }
+    ]
+  },
+  "purchaseReport": {
+    "summary": {
+      "totalPurchases": "৳1,85,000",
+      "totalOrders": 8,
+      "pendingOrders": 2,
+      "avgPurchaseValue": "৳23,125"
+    },
+    "rows": [
+      { "id": 1, "date": "2026-04-10", "poNo": "PO-001", "supplier": "TechWorld Ltd.", "items": 5, "total": "৳85,000", "status": "Received" },
+      { "id": 2, "date": "2026-04-15", "poNo": "PO-002", "supplier": "SoundGear Imports", "items": 2, "total": "৳42,000", "status": "Received" },
+      { "id": 3, "date": "2026-04-22", "poNo": "PO-003", "supplier": "PeripheralsPro", "items": 3, "total": "৳28,500", "status": "Pending" },
+      { "id": 4, "date": "2026-04-28", "poNo": "PO-004", "supplier": "Galaxy Distribution", "items": 1, "total": "৳29,500", "status": "Pending" }
+    ]
+  },
+  "discountReport": {
+    "summary": {
+      "totalDiscountGiven": "৳28,400",
+      "discountOrders": 312,
+      "avgDiscount": "৳91",
+      "topCoupon": "SUMMER15"
+    },
+    "rows": [
+      { "id": 1, "date": "2026-05-01", "coupon": "WELCOME50", "type": "Fixed", "value": "৳50", "usedCount": 12, "totalSaved": "৳600" },
+      { "id": 2, "date": "2026-05-01", "coupon": "SUMMER15", "type": "Percentage", "value": "15%", "usedCount": 45, "totalSaved": "৳12,800" },
+      { "id": 3, "date": "2026-05-02", "coupon": "BULK5", "type": "Percentage", "value": "5%", "usedCount": 23, "totalSaved": "৳5,200" },
+      { "id": 4, "date": "2026-05-03", "coupon": "EID2026", "type": "Fixed", "value": "৳200", "usedCount": 8, "totalSaved": "৳1,600" }
+    ]
+  },
+  "revenueAnalysis": [
+    { "name": "Jan", "value": 4000 },
+    { "name": "Feb", "value": 3000 },
+    { "name": "Mar", "value": 2000 },
+    { "name": "Apr", "value": 2780 },
+    { "name": "May", "value": 1890 },
+    { "name": "Jun", "value": 2390 }
+  ]
+}

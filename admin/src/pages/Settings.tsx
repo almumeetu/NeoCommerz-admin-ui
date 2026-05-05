@@ -1,68 +1,135 @@
 import { useState } from 'react';
-import { PageHeader } from '../components/PageHeaders';
-import { Key, Bell, Globe } from 'lucide-react';
+import { 
+  Building2, MonitorSmartphone, Globe, 
+  CircleDollarSign, Star, Gift, Users, Tag, CreditCard,
+  Box, ShoppingCart,
+  Bell, MessageSquare
+} from 'lucide-react';
+import { Branches } from './settings/Branches';
+import { SiteSettings } from './settings/SiteSettings';
+import { StoreCreditRefund } from './settings/StoreCreditRefund';
+import { Registers } from './settings/Registers';
+import { LoyaltyProgram } from './settings/LoyaltyProgram';
+import { GiftVoucher } from './settings/GiftVoucher';
+import { CustomerGroups } from './settings/CustomerGroups';
+import { DiscountSettings } from './settings/DiscountSettings';
+import { BillingSubscription } from './settings/BillingSubscription';
+import { InventorySettings } from './settings/InventorySettings';
+import { PosSettings } from './settings/PosSettings';
+import { NotificationSettings } from './settings/NotificationSettings';
+import { MessageSettings } from './settings/MessageSettings';
+import { SettingsPlaceholder } from './settings/SettingsPlaceholder';
+import clsx from 'clsx';
 
 export const Settings = () => {
-  const [activeTab, setActiveTab] = useState('general');
+  const [activeTab, setActiveTab] = useState('Branches');
 
-  const tabs = [
-    { id: 'general', label: 'General', icon: Globe },
-    { id: 'security', label: 'Security', icon: Key },
-    { id: 'notifications', label: 'Notifications', icon: Bell },
+  const groups = [
+    {
+      title: 'GENERAL',
+      items: [
+        { id: 'Branches', label: 'Branches', icon: Building2 },
+        { id: 'Registers', label: 'Registers', icon: MonitorSmartphone },
+        { id: 'Site Settings', label: 'Site Settings', icon: Globe },
+      ]
+    },
+    {
+      title: 'FINANCE',
+      items: [
+        { id: 'Store Credit & Refund', label: 'Store Credit & Refund', icon: CircleDollarSign },
+        { id: 'Loyalty Program', label: 'Loyalty Program', icon: Star },
+        { id: 'Gift Voucher', label: 'Gift Voucher', icon: Gift },
+        { id: 'Customer Groups', label: 'Customer Groups', icon: Users },
+        { id: 'Discount', label: 'Discount', icon: Tag },
+        { id: 'Billing & Subscription', label: 'Billing & Subscription', icon: CreditCard },
+      ]
+    },
+    {
+      title: 'OPERATIONS',
+      items: [
+        { id: 'Inventory Settings', label: 'Inventory Settings', icon: Box },
+        { id: 'POS Settings', label: 'POS Settings', icon: ShoppingCart },
+      ]
+    },
+    {
+      title: 'COMMUNICATION',
+      items: [
+        { id: 'Notification Settings', label: 'Notification Settings', icon: Bell },
+        { id: 'Message', label: 'Message', icon: MessageSquare },
+      ]
+    }
   ];
 
-  return (
-    <div className="p-8 max-w-[1200px] mx-auto bg-white min-h-screen">
-      <PageHeader title="Settings" subtitle="Manage your application configuration and preferences" />
-      
-      <div className="flex gap-8 mt-8">
-        <div className="w-64 shrink-0">
-          <div className="space-y-1">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                  activeTab === tab.id 
-                    ? 'bg-emerald-50 text-emerald-600' 
-                    : 'text-gray-500 hover:bg-gray-50'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Branches':
+        return <Branches />;
+      case 'Registers':
+        return <Registers />;
+      case 'Site Settings':
+        return <SiteSettings />;
+      case 'Store Credit & Refund':
+        return <StoreCreditRefund />;
+      case 'Loyalty Program':
+        return <LoyaltyProgram />;
+      case 'Gift Voucher':
+        return <GiftVoucher />;
+      case 'Customer Groups':
+        return <CustomerGroups />;
+      case 'Discount':
+        return <DiscountSettings />;
+      case 'Billing & Subscription':
+        return <BillingSubscription />;
+      case 'Inventory Settings':
+        return <InventorySettings />;
+      case 'POS Settings':
+        return <PosSettings />;
+      case 'Notification Settings':
+        return <NotificationSettings />;
+      case 'Message':
+        return <MessageSettings />;
+      default:
+        return (
+          <SettingsPlaceholder 
+            title={activeTab} 
+            subtitle={`Manage your ${activeTab.toLowerCase()} settings and preferences`} 
+          />
+        );
+    }
+  };
 
-        <div className="flex-1 bg-gray-50/50 rounded-2xl p-8 border border-gray-100">
-          {activeTab === 'general' && (
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-6">General Information</h3>
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Branch Name</label>
-                    <input type="text" defaultValue="Main Branch" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500/20 outline-none" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Currency Symbol</label>
-                    <input type="text" defaultValue="৳" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500/20 outline-none" />
-                  </div>
-                </div>
-              </div>
-              <div className="pt-6 border-t border-gray-100">
-                 <button className="px-6 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-all">Save Changes</button>
-              </div>
+  return (
+    <div className="flex min-h-full">
+      {/* Secondary Sidebar */}
+      <div className="w-64 shrink-0 bg-white border-r border-gray-100 py-6 font-sans">
+        {groups.map((group, idx) => (
+          <div key={idx} className="mb-6">
+            <h4 className="px-6 text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">
+              {group.title}
+            </h4>
+            <div className="space-y-0.5 px-3">
+              {group.items.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={clsx(
+                    "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                    activeTab === item.id
+                      ? "text-blue-600 font-medium border border-blue-600 bg-white"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  )}
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.label}
+                </button>
+              ))}
             </div>
-          )}
-          {activeTab !== 'general' && (
-            <div className="flex items-center justify-center h-64 text-gray-400 italic">
-              {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} settings coming soon.
-            </div>
-          )}
-        </div>
+          </div>
+        ))}
       </div>
+
+      {/* Main Content */}
+      {renderContent()}
     </div>
   );
 };

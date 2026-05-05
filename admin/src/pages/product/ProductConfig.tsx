@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 import { Edit, Trash2, Settings } from 'lucide-react';
 
 export const ProductConfig = () => {
@@ -10,17 +11,38 @@ export const ProductConfig = () => {
   
   let title = "Product Configuration";
   let itemName = "item";
+  let jsonKey = "";
   
-  if (path.includes('specifications')) { title = "Specifications"; itemName = "specifications"; }
-  else if (path.includes('variant-options')) { title = "Variant Options"; itemName = "options"; }
-  else if (path.includes('units-of-measurement')) { title = "Units of Measurement"; itemName = "units"; }
+  if (path.includes('specifications')) { 
+    title = "Specifications"; 
+    itemName = "specifications";
+    jsonKey = "specifications";
+  } else if (path.includes('variant-options')) { 
+    title = "Variant Options"; 
+    itemName = "options";
+    jsonKey = "variantOptions";
+  } else if (path.includes('units-of-measurement')) { 
+    title = "Units of Measurement"; 
+    itemName = "units";
+    jsonKey = "unitsOfMeasurement";
+  }
 
-  const [items, setItems] = useState([
-    { id: 1, name: 'Sample ' + title, status: true },
-  ]);
+  const [items, setItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newName, setNewName] = useState('');
+
+  useEffect(() => {
+    setLoading(true);
+    fetch('/src/data/products.json')
+      .then(res => res.json())
+      .then(json => {
+        setItems(json[jsonKey] || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [jsonKey]);
 
   const filteredItems = items.filter(i => i.name.toLowerCase().includes(search.toLowerCase()));
 
@@ -31,6 +53,8 @@ export const ProductConfig = () => {
     setNewName('');
     setIsModalOpen(false);
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">
@@ -64,7 +88,9 @@ export const ProductConfig = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[10px] font-bold uppercase">Active</span>
+                  <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase ${item.status ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-50 text-gray-400'}`}>
+                    {item.status ? 'Active' : 'Inactive'}
+                  </span>
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-2">

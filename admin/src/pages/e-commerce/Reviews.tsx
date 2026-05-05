@@ -1,11 +1,9 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, MessageSquare, Star, ThumbsUp, User, Calendar, Check, X, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
-import type { Review } from '../../types/types';
-import ecommerceData from '../../data/e-commerce.json';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
 type StatusFilterKey = 'all' | 'pending' | 'approved' | 'rejected';
 
-// Update types to include product-based reviews
 interface ProductReviews {
   productId: string;
   productName: string;
@@ -19,12 +17,23 @@ export const Reviews = () => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<StatusFilterKey>('all');
   const [showSidebar, setShowSidebar] = useState(false);
-  const [reviews, setReviews] = useState<Review[]>(ecommerceData.reviews as Review[]);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
   const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
     show: false,
     message: '',
     type: 'success'
   });
+
+  useEffect(() => {
+    fetch('/src/data/e-commerce.json')
+      .then(res => res.json())
+      .then(json => {
+        setReviews(json.reviews as Review[]);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
     if (toast.show) {
@@ -35,7 +44,6 @@ export const Reviews = () => {
     }
   }, [toast.show]);
 
-  // Group reviews by product
   const productReviews = useMemo(() => {
     const grouped = reviews.reduce((acc, review) => {
       if (!acc[review.product]) {
@@ -52,7 +60,6 @@ export const Reviews = () => {
       return acc;
     }, {} as Record<string, ProductReviews>);
 
-    // Calculate average ratings
     Object.values(grouped).forEach(product => {
       const sum = product.reviews.reduce((acc, r) => acc + r.rating, 0);
       product.averageRating = sum / product.reviews.length;
@@ -61,14 +68,12 @@ export const Reviews = () => {
     return Object.values(grouped);
   }, [reviews]);
 
-  // Filter products by search
   const filteredProducts = useMemo(() => {
     return productReviews.filter(product =>
       product.productName.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [productReviews, searchTerm]);
 
-  // Get filtered reviews across all products based on status
   const filteredReviewsByStatus = useMemo(() => {
     if (filterStatus === 'all') {
       return reviews;
@@ -76,13 +81,11 @@ export const Reviews = () => {
     return reviews.filter(r => r.status === filterStatus);
   }, [reviews, filterStatus]);
 
-  // Get selected product reviews with status filter
   const selectedProductReviews = useMemo(() => {
     if (!selectedProduct) return null;
     const product = productReviews.find(p => p.productName === selectedProduct);
     if (!product) return null;
-    
-    // Filter by status if not 'all'
+
     if (filterStatus === 'all') return product;
     
     return {
@@ -92,7 +95,6 @@ export const Reviews = () => {
     };
   }, [selectedProduct, productReviews, filterStatus]);
 
-  // Calculate overall stats
   const stats = useMemo(() => {
     const total = reviews.length;
     const pending = reviews.filter(r => r.status === 'pending').length;
@@ -105,7 +107,6 @@ export const Reviews = () => {
     return { total, pending, approved, rejected, avgRating };
   }, [reviews]);
 
-  // Status filters - show counts based on selected product or overall
   const statusFilters = useMemo(() => {
     if (selectedProduct) {
       const product = productReviews.find(p => p.productName === selectedProduct);
@@ -134,7 +135,7 @@ export const Reviews = () => {
 
   const handleStatusFilterChange = (status: StatusFilterKey) => {
     setFilterStatus(status);
-    // Clear product selection when changing status to show all reviews with that status
+
     setSelectedProduct(null);
   };
 
@@ -147,6 +148,8 @@ export const Reviews = () => {
     setReviews(prev => prev.map(r => r.id === reviewId ? { ...r, status: 'rejected' as const } : r));
     setToast({ show: true, message: 'Review rejected', type: 'success' });
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">

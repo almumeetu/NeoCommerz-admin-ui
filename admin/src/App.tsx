@@ -12,12 +12,14 @@ import { ProductConfig } from './pages/product/ProductConfig';
 import { Stock } from './pages/Stock';
 import { Discount } from './pages/Discount';
 import { GiftVoucher } from './pages/GiftVoucher';
+import { Warranties } from './pages/Warranties';
 import { Orders } from './pages/Orders';
 import { Report } from './pages/Report';
 import { InventoryReport } from './pages/finance/InventoryReport';
 import { GenericFinancePage } from './pages/finance/GenericFinancePage';
 import { Settings } from './pages/Settings';
 import { AccessManagement } from './pages/AccessManagement';
+import { Roles } from './pages/access-management/Roles';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 // E-Commerce Pages
@@ -34,7 +36,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="w-10 h-10 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -72,6 +74,7 @@ function AppRoutes() {
         <Route path="stock" element={<Stock />} />
         <Route path="discount" element={<Discount />} />
         <Route path="gift-voucher" element={<GiftVoucher />} />
+        <Route path="warranties" element={<Warranties />} />
         
         {/* E-Commerce Routes */}
         <Route path="e-commerce/new-orders" element={<NewOrders />} />
@@ -85,7 +88,7 @@ function AppRoutes() {
         <Route path="finance/purchase-report" element={<GenericFinancePage title="Purchase Report" />} />
         <Route path="finance/discount-report" element={<GenericFinancePage title="Discount Report" />} />
         <Route path="access-management/users" element={<AccessManagement />} />
-        <Route path="access-management/roles" element={<GenericFinancePage title="Roles Management" />} />
+        <Route path="access-management/roles" element={<Roles />} />
         <Route path="settings/general" element={<Settings />} />
         <Route path="settings/manage-website" element={<GenericFinancePage title="Manage Website" />} />
         <Route path="report" element={<Report />} />

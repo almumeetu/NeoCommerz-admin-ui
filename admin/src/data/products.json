@@ -1,4 +1,48 @@
 {
-  "products": [],
-  "categories": []
+  "products": [
+    { "id": 1, "name": "Smart Watch Series 7", "sku": "SW-001", "category": "Electronics", "brand": "Apple", "price": 24999, "stock": 45, "status": true },
+    { "id": 2, "name": "Sony WH-1000XM4 Headphones", "sku": "SON-002", "category": "Electronics", "brand": "Sony", "price": 18500, "stock": 12, "status": true },
+    { "id": 3, "name": "Logitech G Pro Mouse", "sku": "LG-003", "category": "Peripherals", "brand": "Logitech", "price": 5800, "stock": 0, "status": false },
+    { "id": 4, "name": "Samsung Galaxy Tab S8", "sku": "SAM-004", "category": "Electronics", "brand": "Samsung", "price": 62000, "stock": 7, "status": true },
+    { "id": 5, "name": "Mechanical Keyboard RGB", "sku": "KB-005", "category": "Peripherals", "brand": "Redragon", "price": 3200, "stock": 28, "status": true }
+  ],
+  "categories": [
+    { "id": 1, "name": "Electronics", "slug": "electronics", "products": 3, "status": true },
+    { "id": 2, "name": "Peripherals", "slug": "peripherals", "products": 2, "status": true },
+    { "id": 3, "name": "Accessories", "slug": "accessories", "products": 0, "status": true }
+  ],
+  "brands": [
+    { "id": 1, "name": "Apple", "slug": "apple", "products": 1, "status": true },
+    { "id": 2, "name": "Sony", "slug": "sony", "products": 1, "status": true },
+    { "id": 3, "name": "Samsung", "slug": "samsung", "products": 1, "status": true },
+    { "id": 4, "name": "Logitech", "slug": "logitech", "products": 1, "status": true },
+    { "id": 5, "name": "Redragon", "slug": "redragon", "products": 1, "status": true }
+  ],
+  "tags": [
+    { "id": 1, "name": "Featured", "slug": "featured", "products": 3, "status": true },
+    { "id": 2, "name": "New Arrival", "slug": "new-arrival", "products": 2, "status": true },
+    { "id": 3, "name": "Sale", "slug": "sale", "products": 1, "status": true },
+    { "id": 4, "name": "Best Seller", "slug": "best-seller", "products": 2, "status": false }
+  ],
+  "stock": [
+    { "id": 1, "product": "Smart Watch Series 7", "sku": "SW-001", "branch": "Main Branch", "quantity": 30, "reserved": 5, "available": 25, "status": "In Stock" },
+    { "id": 2, "product": "Sony WH-1000XM4 Headphones", "sku": "SON-002", "branch": "Main Branch", "quantity": 12, "reserved": 2, "available": 10, "status": "Low Stock" },
+    { "id": 3, "product": "Logitech G Pro Mouse", "sku": "LG-003", "branch": "Main Branch", "quantity": 0, "reserved": 0, "available": 0, "status": "Out of Stock" },
+    { "id": 4, "product": "Samsung Galaxy Tab S8", "sku": "SAM-004", "branch": "Chittagong Branch", "quantity": 7, "reserved": 1, "available": 6, "status": "Low Stock" },
+    { "id": 5, "product": "Mechanical Keyboard RGB", "sku": "KB-005", "branch": "Main Branch", "quantity": 28, "reserved": 0, "available": 28, "status": "In Stock" }
+  ],
+  "specifications": [
+    { "id": 1, "name": "Color", "status": true },
+    { "id": 2, "name": "Material", "status": true },
+    { "id": 3, "name": "Dimensions", "status": true }
+  ],
+  "variantOptions": [
+    { "id": 1, "name": "Size", "status": true },
+    { "id": 2, "name": "Weight", "status": true }
+  ],
+  "unitsOfMeasurement": [
+    { "id": 1, "name": "Piece (pc)", "status": true },
+    { "id": 2, "name": "Kilogram (kg)", "status": true },
+    { "id": 3, "name": "Meter (m)", "status": true }
+  ]
 }

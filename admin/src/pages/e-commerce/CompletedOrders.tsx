@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, MessageSquare, CheckCircle, Calendar, DollarSign, User, Phone, MapPin, Package, TrendingUp, Check, Printer, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
-import type { CompletedOrder } from '../../types/types';
-import ecommerceData from '../../data/e-commerce.json';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
 type PaymentFilterKey = 'all' | 'bKash' | 'Nagad' | 'Cash on Delivery';
 
@@ -9,13 +8,24 @@ export const CompletedOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterPayment, setFilterPayment] = useState<PaymentFilterKey>('all');
   const [selectedOrder, setSelectedOrder] = useState<CompletedOrder | null>(null);
-  const [orders] = useState<CompletedOrder[]>(ecommerceData.completedOrders as CompletedOrder[]);
+  const [orders, setOrders] = useState<CompletedOrder[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
   const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
     show: false,
     message: '',
     type: 'success'
   });
+
+  useEffect(() => {
+    fetch('/src/data/e-commerce.json')
+      .then(res => res.json())
+      .then(json => {
+        setOrders(json.completedOrders as CompletedOrder[]);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
     if (toast.show) {
@@ -70,6 +80,8 @@ export const CompletedOrders = () => {
   const handlePrintInvoice = () => {
     setToast({ show: true, message: 'Invoice printed successfully', type: 'success' });
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">

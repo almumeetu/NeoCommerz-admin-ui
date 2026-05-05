@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight, Menu, Plus, Trash2, Edit } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
 interface CategoryItem {
   id: string;
@@ -9,25 +10,37 @@ interface CategoryItem {
   children?: CategoryItem[];
 }
 
-const initialCategories: CategoryItem[] = [
-  {
-    id: '1',
-    name: 'Gadgets',
-    children: [
-      { id: '1-1', name: 'Camera' },
-      { id: '1-2', name: 'Earbud' },
-    ]
-  },
-  { id: '2', name: 'Watch', children: [] }
-];
-
 export const Categories = () => {
-  const [categories, setCategories] = useState<CategoryItem[]>(initialCategories);
+  const [categories, setCategories] = useState<CategoryItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({ '1': true, '2': true });
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<{ id: string, name: string, isParent: boolean } | null>(null);
   const [newCategory, setNewCategory] = useState({ name: '', parentId: '' });
+
+  useEffect(() => {
+    fetch('/src/data/products.json')
+      .then(res => res.json())
+      .then(json => {
+        // Map the flat categories from JSON to nested if needed, or just use them
+        // For now, let's assume they are structured like the UI expects
+        // But the JSON shows { id, name, slug, products, status }
+        // Let's adapt to what's in products.json
+        const cats = json.categories.map((c: any) => ({
+          id: c.id.toString(),
+          name: c.name,
+          children: [] // In actual app, these might come nested
+        }));
+        setCategories(cats);
+        // Expand all by default
+        const initialExpanded: Record<string, boolean> = {};
+        cats.forEach((c: any) => initialExpanded[c.id] = true);
+        setExpanded(initialExpanded);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const toggleExpand = (id: string) => setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
 
@@ -67,13 +80,15 @@ export const Categories = () => {
     else setCategories(categories.map(c => ({ ...c, children: c.children?.filter(ch => ch.id !== id) })));
   };
 
+  if (loading) return <LoadingSpinner />;
+
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">
       <PageHeader title="Category" subtitle="A list of all of your product categories" />
       <SectionHeader title="Categories list" count={categories.length} itemName="categories" onAdd={() => { setEditingItem(null); setIsModalOpen(true); }} searchPlaceholder="Search..." searchValue={search} onSearchChange={setSearch} />
 
       <div className="space-y-4 mt-4">
-        {categories.map((category) => (
+        {categories.filter(c => c.name.toLowerCase().includes(search.toLowerCase())).map((category) => (
           <div key={category.id} className="w-full group">
             <div className="flex items-center gap-2">
               <button onClick={() => toggleExpand(category.id)} className="w-5 h-5 flex items-center justify-center text-gray-400">{expanded[category.id] ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}</button>
@@ -89,7 +104,7 @@ export const Categories = () => {
                 </div>
               </div>
             </div>
-            {expanded[category.id] && category.children && (
+            {expanded[category.id] && category.children && category.children.length > 0 && (
               <div className="ml-[10px] pl-[26px] border-l border-emerald-100 mt-2 space-y-2">
                 {category.children.map((child) => (
                   <div key={child.id} className="flex items-center justify-between px-4 py-3 border border-gray-100 rounded-lg bg-gray-50/30 shadow-sm relative group/child">

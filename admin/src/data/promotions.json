@@ -1,0 +1,54 @@
+{
+  "discounts": [
+    {
+      "id": 1,
+      "title": "Eid Mubarak Special",
+      "description": "Get 20% off on all watches and gadgets.",
+      "code": "EID2026",
+      "value": "20%",
+      "status": "active",
+      "color": "emerald"
+    },
+    {
+      "id": 2,
+      "title": "New User Offer",
+      "description": "Flat ৳500 off on your first purchase over ৳2000.",
+      "code": "WELCOME500",
+      "value": "৳500",
+      "status": "active",
+      "color": "blue"
+    },
+    {
+      "id": 3,
+      "title": "Summer Clearance",
+      "description": "Up to 50% off on last season's collections.",
+      "code": "SUMMER50",
+      "value": "50%",
+      "status": "expired",
+      "color": "orange"
+    }
+  ],
+  "giftVouchers": [
+    {
+      "id": 1,
+      "amount": "5,000",
+      "message": "Happy Shopping!",
+      "code": "GIFT-2026-NEO",
+      "theme": "emerald"
+    },
+    {
+      "id": 2,
+      "amount": "10,000",
+      "message": "Special Gift For You",
+      "code": "VIP-GIFT-X",
+      "theme": "purple"
+    },
+    {
+      "id": 3,
+      "amount": "2,000",
+      "message": "Treat Yourself!",
+      "code": "BDAY-2026",
+      "theme": "blue"
+    }
+  ]
+}
