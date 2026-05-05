@@ -1,8 +1,6 @@
-{
-  "suppliers": [
-    { "id": 1, "name": "TechWorld Ltd.", "email": "info@techworld.com", "phone": "+880 1700-111111", "address": "Dhaka, Bangladesh", "products": 12, "status": true },
-    { "id": 2, "name": "SoundGear Imports", "email": "sales@soundgear.com", "phone": "+880 1700-222222", "address": "Chittagong, Bangladesh", "products": 5, "status": true },
-    { "id": 3, "name": "PeripheralsPro", "email": "contact@peripheralspro.com", "phone": "+880 1700-333333", "address": "Dhaka, Bangladesh", "products": 8, "status": false },
-    { "id": 4, "name": "Galaxy Distribution", "email": "info@galaxydist.com", "phone": "+880 1700-444444", "address": "Sylhet, Bangladesh", "products": 3, "status": true }
-  ]
-}
+[
+  { "id": 1, "companyName": "TechWorld Ltd.", "businessPhone": "+880 1700-111111", "address": "Dhaka, Bangladesh", "status": true },
+  { "id": 2, "companyName": "SoundGear Imports", "businessPhone": "+880 1700-222222", "address": "Chittagong, Bangladesh", "status": true },
+  { "id": 3, "companyName": "PeripheralsPro", "businessPhone": "+880 1700-333333", "address": "Dhaka, Bangladesh", "status": false },
+  { "id": 4, "companyName": "Galaxy Distribution", "businessPhone": "+880 1700-444444", "address": "Sylhet, Bangladesh", "status": true }
+]

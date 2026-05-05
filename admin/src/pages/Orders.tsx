@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { PageHeader, SectionHeader } from '../components/PageHeaders';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { Eye, Printer } from 'lucide-react';
+import ordersData from '../data/orders.json';
 
 export const Orders = () => {
   const { status } = useParams();
@@ -11,13 +12,8 @@ export const Orders = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch('/src/data/orders.json')
-      .then(res => res.json())
-      .then(json => {
-        setOrders(json);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setOrders(ordersData);
+    setLoading(false);
   }, []);
 
   const filteredOrders = orders.filter(o => {

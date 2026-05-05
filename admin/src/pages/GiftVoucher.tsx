@@ -1,23 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PageHeader, SectionHeader } from '../components/PageHeaders';
 import { Gift, Edit, Trash2, Send, Sparkles } from 'lucide-react';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import clsx from 'clsx';
+import promotionsData from '../data/promotions.json';
 
 export const GiftVoucher = () => {
   const [search, setSearch] = useState('');
-  const [vouchers, setVouchers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/src/data/promotions.json')
-      .then(res => res.json())
-      .then(json => {
-        setVouchers(json.giftVouchers);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  const vouchers = promotionsData.giftVouchers || [];
+  const loading = false;
 
   const filtered = vouchers.filter(v => 
     v.code.toLowerCase().includes(search.toLowerCase()) ||

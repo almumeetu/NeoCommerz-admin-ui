@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, MessageSquare, Package, Clock, DollarSign, User, Phone, MapPin, ShoppingBag, Truck, CheckCircle, XCircle, Check, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import type { TabKey, Order } from '../../types/types';
+import ecommerceData from '../../data/e-commerce.json';
 
 export const NewOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,13 +18,8 @@ export const NewOrders = () => {
   });
 
   useEffect(() => {
-    fetch('/src/data/e-commerce.json')
-      .then(res => res.json())
-      .then(json => {
-        setOrders(json.orders as Order[]);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setOrders(ecommerceData.orders as Order[]);
+    setLoading(false);
   }, []);
 
   useEffect(() => {

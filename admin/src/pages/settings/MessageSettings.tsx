@@ -2,6 +2,7 @@ import { Plus, RefreshCw, Edit, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
+import settingsData from '../../data/settings.json';
 
 interface MessageTemplate {
   id: number;
@@ -18,13 +19,8 @@ export const MessageSettings = () => {
   const [newTemplate, setNewTemplate] = useState({ name: '', channel: 'SMS', status: true });
 
   useEffect(() => {
-    fetch('/src/data/settings.json')
-      .then(res => res.json())
-      .then(json => {
-        setTemplates(json.messageTemplates);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setTemplates(settingsData.messageTemplates || []);
+    setLoading(false);
   }, []);
 
   const handleSave = () => {

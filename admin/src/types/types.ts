@@ -236,3 +236,78 @@ export interface CustomerGroup {
   members?: number;
   status?: boolean;
 }
+
+// Dashboard Types
+export interface Metric {
+  id: number;
+  title: string;
+  value: string;
+  trend: string;
+  trendDirection: 'up' | 'down';
+  icon: string;
+}
+
+export interface SalesTrend {
+  date: string;
+  sales: number;
+}
+
+export interface RecentActivity {
+  id: number;
+  user: string;
+  action: string;
+  time: string;
+  amount?: string | null;
+}
+
+export interface TopProduct {
+  id: number;
+  name: string;
+  sales: number;
+  revenue: string;
+}
+
+export interface RevenueChannel {
+  name: string;
+  value: number;
+  color: string;
+}
+
+export interface DashboardData {
+  metrics: Metric[];
+  salesTrend: SalesTrend[];
+  recentActivity: RecentActivity[];
+  topProducts: TopProduct[];
+  revenueChannels: RevenueChannel[];
+}
+
+// Gift Voucher Types
+export interface GiftVoucherType {
+  id: number;
+  amount: string;
+  message: string;
+  code: string;
+  theme: string;
+}
+
+// Report Types
+export interface RevenueAnalysis {
+  name: string;
+  value: number;
+}
+
+export interface SaleReportSummary {
+  totalSales: string;
+  totalOrders: number;
+  averageOrderValue: string;
+  growth: string;
+}
+
+export interface SaleReport {
+  summary: SaleReportSummary;
+}
+
+export interface FinanceData {
+  revenueAnalysis: RevenueAnalysis[];
+  saleReport: SaleReport;
+}

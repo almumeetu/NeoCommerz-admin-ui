@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import { StatCard } from '../components/StatCard';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import dashboardData from '../data/dashboard.json';
 import { 
   FileText, 
   ShoppingCart, 
@@ -8,7 +8,6 @@ import {
   DollarSign, 
   Activity, 
   Briefcase,
-  ChevronDown,
   Calendar,
   BarChart2,
   List,
@@ -29,24 +28,11 @@ import {
   Pie,
   Cell
 } from 'recharts';
-import clsx from 'clsx';
+import type { RecentActivity, TopProduct, RevenueChannel } from '../types/types';
 
 export const Dashboard = () => {
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/src/data/dashboard.json')
-      .then(res => res.json())
-      .then(json => {
-        setData(json);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to load dashboard data:', err);
-        setLoading(false);
-      });
-  }, []);
+  const data = dashboardData;
+  const loading = false;
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -89,13 +75,13 @@ export const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        {data?.metrics?.map((metric: any) => (
+        {data?.metrics?.map((metric) => (
           <StatCard
             key={metric.id}
             title={metric.title}
             value={metric.value}
             trend={metric.trend}
-            trendDirection={metric.trendDirection}
+            trendDirection={metric.trendDirection as 'up' | 'down'}
             icon={getIcon(metric.icon)}
           />
         ))}
@@ -144,7 +130,7 @@ export const Dashboard = () => {
             <Activity className="w-5 h-5 text-emerald-500" />
           </div>
           <div className="space-y-6 flex-1">
-            {data?.recentActivity?.map((activity: any) => (
+            {data?.recentActivity?.map((activity: RecentActivity) => (
               <div key={activity.id} className="flex gap-4 group cursor-pointer">
                 <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                   <User className="w-5 h-5 text-emerald-600" />
@@ -176,7 +162,7 @@ export const Dashboard = () => {
             </div>
           </div>
           <div className="space-y-4">
-            {data?.topProducts?.map((product: any) => (
+            {data?.topProducts?.map((product: TopProduct) => (
               <div key={product.id} className="flex items-center justify-between p-4 rounded-2xl border border-gray-50 hover:border-emerald-100 hover:bg-emerald-50/30 transition-all group">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center group-hover:bg-white transition-colors">
@@ -217,7 +203,7 @@ export const Dashboard = () => {
                     paddingAngle={8}
                     dataKey="value"
                   >
-                    {data?.revenueChannels?.map((entry: any, index: number) => (
+                    {data?.revenueChannels?.map((entry: RevenueChannel, index: number) => (
                       <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
                     ))}
                   </Pie>
@@ -228,7 +214,7 @@ export const Dashboard = () => {
               </ResponsiveContainer>
             </div>
             <div className="w-full md:w-1/2 space-y-4">
-              {data?.revenueChannels?.map((channel: any, index: number) => (
+              {data?.revenueChannels?.map((channel: RevenueChannel, index: number) => (
                 <div key={index} className="flex items-center justify-between group cursor-pointer">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: channel.color }}></div>

@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
+import settingsData from '../../data/settings.json';
 
 export const InventorySettings = () => {
   const [config, setConfig] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/src/data/settings.json')
-      .then(res => res.json())
-      .then(json => {
-        setConfig(json.inventorySettings);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setConfig(settingsData.inventorySettings);
+    setLoading(false);
   }, []);
 
   const handleSave = () => {

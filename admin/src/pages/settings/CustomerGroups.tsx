@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import type { CustomerGroup } from '../../types/types';
+import settingsData from '../../data/settings.json';
 
 export const CustomerGroups = () => {
   const [search, setSearch] = useState('');
@@ -12,13 +13,8 @@ export const CustomerGroups = () => {
   const [newGroup, setNewGroup] = useState({ name: '', discount: '', status: true });
 
   useEffect(() => {
-    fetch('/src/data/settings.json')
-      .then(res => res.json())
-      .then(json => {
-        setGroups(json.customerGroups);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setGroups(settingsData.customerGroups);
+    setLoading(false);
   }, []);
 
   const handleSave = () => {

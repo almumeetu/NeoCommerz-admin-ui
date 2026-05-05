@@ -3,6 +3,7 @@ import { PageHeader, SectionHeader } from '../components/PageHeaders';
 import { Edit, Trash2, Ticket } from 'lucide-react';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import clsx from 'clsx';
+import promotionsData from '../data/promotions.json';
 
 export const Discount = () => {
   const [search, setSearch] = useState('');
@@ -10,13 +11,8 @@ export const Discount = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/src/data/promotions.json')
-      .then(res => res.json())
-      .then(json => {
-        setDiscounts(json.discounts);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setDiscounts(promotionsData.discounts || []);
+    setLoading(false);
   }, []);
 
   const filtered = discounts.filter(d => 

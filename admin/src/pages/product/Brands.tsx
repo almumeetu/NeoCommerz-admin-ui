@@ -4,6 +4,7 @@ import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import type { Brand } from '../../types/types';
+import productsData from '../../data/products.json';
 
 export const Brands = () => {
   const [brands, setBrands] = useState<Brand[]>([]);
@@ -14,13 +15,8 @@ export const Brands = () => {
   const [formData, setFormData] = useState({ name: '', description: '' });
 
   useEffect(() => {
-    fetch('/src/data/products.json')
-      .then(res => res.json())
-      .then(json => {
-        setBrands(json.brands || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setBrands(productsData.brands);
+    setLoading(false);
   }, []);
 
   const filteredBrands = brands.filter(brand => 

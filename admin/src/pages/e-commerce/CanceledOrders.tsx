@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Search, Filter, Download, MessageSquare, XCircle, Calendar, DollarSign, User, Phone, AlertCircle, Check, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
+import { Search, Filter, Download, MessageSquare, XCircle, DollarSign, User, Phone, AlertCircle, Check, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import type { CancelFilterKey, CanceledOrder } from '../../types/types';
+import ecommerceData from '../../data/e-commerce.json';
 
 export const CanceledOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,13 +18,8 @@ export const CanceledOrders = () => {
   });
 
   useEffect(() => {
-    fetch('/src/data/e-commerce.json')
-      .then(res => res.json())
-      .then(json => {
-        setOrders(json.canceledOrders as CanceledOrder[]);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setOrders(ecommerceData.canceledOrders as CanceledOrder[]);
+    setLoading(false);
   }, []);
 
   useEffect(() => {

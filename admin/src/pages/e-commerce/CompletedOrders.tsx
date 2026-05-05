@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Search, Filter, Download, MessageSquare, CheckCircle, Calendar, DollarSign, User, Phone, MapPin, Package, TrendingUp, Check, Printer, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
+import { Search, Filter, Download, MessageSquare, CheckCircle, DollarSign, User, Phone, MapPin, Package, TrendingUp, Check, Printer, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import type { PaymentFilterKey, CompletedOrder } from '../../types/types';
+import ecommerceData from '../../data/e-commerce.json';
 
 export const CompletedOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,13 +18,8 @@ export const CompletedOrders = () => {
   });
 
   useEffect(() => {
-    fetch('/src/data/e-commerce.json')
-      .then(res => res.json())
-      .then(json => {
-        setOrders(json.completedOrders as CompletedOrder[]);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setOrders(ecommerceData.completedOrders as CompletedOrder[]);
+    setLoading(false);
   }, []);
 
   useEffect(() => {

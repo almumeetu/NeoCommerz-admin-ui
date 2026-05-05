@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import type { Register } from '../../types/types';
+import settingsData from '../../data/settings.json';
 
 export const Registers = () => {
   const [search, setSearch] = useState('');
@@ -12,13 +13,8 @@ export const Registers = () => {
   const [newRegister, setNewRegister] = useState({ name: '', branch: 'Main Branch', status: true });
 
   useEffect(() => {
-    fetch('/src/data/settings.json')
-      .then(res => res.json())
-      .then(json => {
-        setRegisters(json.registers);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setRegisters(settingsData.registers);
+    setLoading(false);
   }, []);
 
   const handleSave = () => {

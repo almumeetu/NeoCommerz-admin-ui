@@ -2,6 +2,7 @@ import { Plus, RefreshCw, Edit, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
+import settingsData from '../../data/settings.json';
 
 interface GiftVoucherType {
   id: number;
@@ -19,13 +20,16 @@ export const GiftVoucher = () => {
   const [newVoucher, setNewVoucher] = useState({ code: '', value: '', expiry: '', status: true });
 
   useEffect(() => {
-    fetch('/src/data/settings.json')
-      .then(res => res.json())
-      .then(json => {
-        setVouchers(json.giftVouchers);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setVouchers(
+      (settingsData.giftVouchers || []).map((v: any) => ({
+        id: v.id,
+        code: v.code,
+        value: v.value,
+        expiry: v.expiryDate,
+        status: v.status
+      }))
+    );
+    setLoading(false);
   }, []);
 
   const handleSave = () => {

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Modal } from '../components/Modal';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import type { Warranty } from '../types/types';
+import settingsData from '../data/settings.json';
 
 export const Warranties = () => {
   const [search, setSearch] = useState('');
@@ -12,13 +13,8 @@ export const Warranties = () => {
   const [newWarranty, setNewWarranty] = useState({ name: '', duration: '', type: 'Replacement', status: true });
 
   useEffect(() => {
-    fetch('/src/data/settings.json')
-      .then(res => res.json())
-      .then(json => {
-        setWarranties(json.warrantyPolicies);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setWarranties(settingsData.warrantyPolicies);
+    setLoading(false);
   }, []);
 
   const handleSave = () => {

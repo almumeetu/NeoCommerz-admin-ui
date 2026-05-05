@@ -2,6 +2,7 @@ import { Plus, RefreshCw, Edit, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
+import settingsData from '../../data/settings.json';
 
 interface DiscountRule {
   id: number;
@@ -19,13 +20,8 @@ export const DiscountSettings = () => {
   const [newDiscount, setNewDiscount] = useState({ name: '', type: 'Percentage', value: '', status: true });
 
   useEffect(() => {
-    fetch('/src/data/settings.json')
-      .then(res => res.json())
-      .then(json => {
-        setDiscounts(json.discountRules);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setDiscounts(settingsData.discountRules || []);
+    setLoading(false);
   }, []);
 
   const handleSave = () => {

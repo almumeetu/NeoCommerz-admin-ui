@@ -10,7 +10,7 @@ export const BillingSubscription = () => {
     // Standardizing on settings.json for now, but in a real app this would be its own endpoint
     fetch('/src/data/settings.json')
       .then(res => res.json())
-      .then(json => {
+      .then(() => {
         // Mocking billing data for now based on settings.json or hardcoded if not found
         setData({
           planName: 'Professional Plan',

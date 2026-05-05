@@ -1,27 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Edit, Eye, Trash2 } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../components/PageHeaders';
 import { Modal } from '../components/Modal';
-import { LoadingSpinner } from '../components/LoadingSpinner';
 import type { SupplierItem } from '../types/types';
+import suppliersData from '../data/suppliers.json';
 
 export const Suppliers = () => {
-  const [suppliers, setSuppliers] = useState<SupplierItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [suppliers, setSuppliers] = useState<SupplierItem[]>(suppliersData);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingSupplier, setEditingSupplier] = useState<SupplierItem | null>(null);
   const [formData, setFormData] = useState({ companyName: '', businessPhone: '', address: '' });
-
-  useEffect(() => {
-    fetch('/src/data/suppliers.json')
-      .then(res => res.json())
-      .then(json => {
-        setSuppliers(json);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
 
   const filteredSuppliers = suppliers.filter(s => s.companyName.toLowerCase().includes(search.toLowerCase()));
 
@@ -45,8 +34,6 @@ export const Suppliers = () => {
     }
     setIsModalOpen(false);
   };
-
-  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="p-8 max-w-[1600px] mx-auto bg-white min-h-screen">

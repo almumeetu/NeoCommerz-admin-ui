@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Search, MessageSquare, Star, ThumbsUp, User, Calendar, Check, X, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import type { ProductReviews, StatusFilterKey, Review } from '../../types/types';
+import ecommerceData from '../../data/e-commerce.json';
 
 export const Reviews = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,13 +18,8 @@ export const Reviews = () => {
   });
 
   useEffect(() => {
-    fetch('/src/data/e-commerce.json')
-      .then(res => res.json())
-      .then(json => {
-        setReviews(json.reviews as Review[]);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setReviews(ecommerceData.reviews as Review[]);
+    setLoading(false);
   }, []);
 
   useEffect(() => {

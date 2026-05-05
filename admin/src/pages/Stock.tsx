@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PageHeader, SectionHeader } from '../components/PageHeaders';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { Package, TrendingUp, TrendingDown } from 'lucide-react';
+import { Package, TrendingDown } from 'lucide-react';
 
 export const Stock = () => {
   const [stock, setStock] = useState<any[]>([]);

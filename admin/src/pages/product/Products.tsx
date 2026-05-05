@@ -5,6 +5,7 @@ import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import clsx from 'clsx';
 import type { ProductItem } from '../../types/types';
+import productsData from '../../data/products.json';
 
 export const Products = () => {
   const [products, setProducts] = useState<ProductItem[]>([]);
@@ -24,13 +25,13 @@ export const Products = () => {
   });
 
   useEffect(() => {
-    fetch('/src/data/products.json')
-      .then(res => res.json())
-      .then(json => {
-        setProducts(json.products);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setProducts(
+      productsData.products.map((p: any) => ({
+        ...p,
+        price: String(p.price)
+      }))
+    );
+    setLoading(false);
   }, []);
 
   const filteredProducts = products.filter(p => 

@@ -1,30 +1,21 @@
-import { useState, useEffect } from 'react';
-import { PageHeader } from '../components/PageHeaders';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { Calendar, Download, TrendingUp } from 'lucide-react';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import { PageHeader } from '../components/PageHeaders';
+import financeData from '../data/finance.json';
 
 export const Report = () => {
-  const [data, setData] = useState<any[]>([]);
-  const [stats, setStats] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/src/data/finance.json')
-      .then(res => res.json())
-      .then(json => {
-        setData(json.revenueAnalysis || []);
-        const s = json.saleReport.summary;
-        setStats([
-          { label: 'Total Revenue', value: s.totalSales, growth: '+12.5%' },
-          { label: 'Total Orders', value: s.totalOrders.toString(), growth: '+8.2%' },
-          { label: 'Avg Order Value', value: s.avgOrderValue, growth: '+2.4%' },
-          { label: 'Refunds', value: s.refunds, growth: '-1.1%' },
-        ]);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  const data = financeData.revenueAnalysis || [];
+  const stats = (() => {
+    const s = financeData.saleReport.summary;
+    return [
+      { label: 'Total Revenue', value: s.totalSales, growth: '+12.5%' },
+      { label: 'Total Orders', value: s.totalOrders.toString(), growth: '+8.2%' },
+      { label: 'Avg Order Value', value: s.avgOrderValue, growth: '+2.4%' },
+      { label: 'Refunds', value: s.refunds, growth: '-1.1%' },
+    ];
+  })();
+  const loading = false;
 
   if (loading) return <LoadingSpinner />;
 
