@@ -3,13 +3,7 @@ import { Edit, Trash2 } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-interface Tag {
-  id: number;
-  name: string;
-  createdOn: string;
-  status: boolean;
-}
+import type { Tag } from '../../types/types';
 
 export const Tags = () => {
   const [tags, setTags] = useState<Tag[]>([]);

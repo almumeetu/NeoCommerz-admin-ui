@@ -3,12 +3,7 @@ import { ChevronDown, ChevronRight, Menu, Plus, Trash2, Edit } from 'lucide-reac
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-interface CategoryItem {
-  id: string;
-  name: string;
-  children?: CategoryItem[];
-}
+import type { CategoryItem } from '../../types/types';
 
 export const Categories = () => {
   const [categories, setCategories] = useState<CategoryItem[]>([]);

@@ -3,21 +3,14 @@ import { Edit, Eye, Trash2 } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../components/PageHeaders';
 import { Modal } from '../components/Modal';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-
-interface Supplier {
-  id: number;
-  companyName: string;
-  businessPhone: string;
-  address: string;
-  status: boolean;
-}
+import type { SupplierItem } from '../types/types';
 
 export const Suppliers = () => {
-  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+  const [suppliers, setSuppliers] = useState<SupplierItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingSupplier, setEditingSupplier] = useState<Supplier | null>(null);
+  const [editingSupplier, setEditingSupplier] = useState<SupplierItem | null>(null);
   const [formData, setFormData] = useState({ companyName: '', businessPhone: '', address: '' });
 
   useEffect(() => {
@@ -32,7 +25,7 @@ export const Suppliers = () => {
 
   const filteredSuppliers = suppliers.filter(s => s.companyName.toLowerCase().includes(search.toLowerCase()));
 
-  const handleOpenModal = (supplier?: Supplier) => {
+  const handleOpenModal = (supplier?: SupplierItem) => {
     if (supplier) {
       setEditingSupplier(supplier);
       setFormData({ companyName: supplier.companyName, businessPhone: supplier.businessPhone, address: supplier.address });

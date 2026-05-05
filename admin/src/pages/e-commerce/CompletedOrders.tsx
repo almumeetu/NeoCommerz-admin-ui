@@ -1,8 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, MessageSquare, CheckCircle, Calendar, DollarSign, User, Phone, MapPin, Package, TrendingUp, Check, Printer, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-type PaymentFilterKey = 'all' | 'bKash' | 'Nagad' | 'Cash on Delivery';
+import type { PaymentFilterKey, CompletedOrder } from '../../types/types';
 
 export const CompletedOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');

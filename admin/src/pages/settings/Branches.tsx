@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { Plus, RefreshCw, Edit, Trash2, Search } from 'lucide-react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-interface Branch { id: number; name: string; location: string; phone: string; manager: string; status: boolean; }
+import type { Branch } from '../../types/types';
 
 export const Branches = () => {
   const [branches, setBranches] = useState<Branch[]>([]);

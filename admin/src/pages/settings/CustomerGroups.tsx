@@ -2,14 +2,7 @@ import { Plus, RefreshCw, Edit, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-interface CustomerGroup {
-  id: number;
-  name: string;
-  discount: string;
-  members: number;
-  status: boolean;
-}
+import type { CustomerGroup } from '../../types/types';
 
 export const CustomerGroups = () => {
   const [search, setSearch] = useState('');

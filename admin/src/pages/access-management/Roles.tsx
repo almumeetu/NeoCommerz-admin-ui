@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { Plus, RefreshCw, Edit, Trash2, Search } from 'lucide-react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-interface Role { id: number; name: string; permissions: string; users: number; status: boolean; }
+import type { Role } from '../../types/types';
 
 export const Roles = () => {
   const [roles, setRoles] = useState<Role[]>([]);

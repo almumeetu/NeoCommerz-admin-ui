@@ -4,26 +4,15 @@ import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import clsx from 'clsx';
-
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  brand: string;
-  price: string;
-  stock: number;
-  status: boolean;
-  description?: string;
-  image?: string;
-}
+import type { ProductItem } from '../../types/types';
 
 export const Products = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [editingProduct, setEditingProduct] = useState<ProductItem | null>(null);
   const [formData, setFormData] = useState({ 
     name: '', 
     category: '', 
@@ -50,7 +39,7 @@ export const Products = () => {
     p.brand.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleOpenModal = (product?: Product) => {
+  const handleOpenModal = (product?: ProductItem) => {
     if (product) {
       setEditingProduct(product);
       setFormData({ 
@@ -76,7 +65,7 @@ export const Products = () => {
     if (editingProduct) {
       setProducts(products.map(p => p.id === editingProduct.id ? { ...p, ...formData } : p));
     } else {
-      const product: Product = {
+      const product: ProductItem = {
         id: Date.now(),
         ...formData,
       };

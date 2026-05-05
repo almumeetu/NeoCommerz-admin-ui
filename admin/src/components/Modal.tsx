@@ -1,12 +1,6 @@
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  children: React.ReactNode;
-}
+import type { ModalProps } from '../types/types';
 
 export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
   useEffect(() => {

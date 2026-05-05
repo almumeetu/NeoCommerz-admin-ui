@@ -2,14 +2,7 @@ import { Plus, RefreshCw, Edit, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Modal } from '../components/Modal';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-
-interface Warranty {
-  id: number;
-  name: string;
-  duration: string;
-  type: string;
-  status: boolean;
-}
+import type { Warranty } from '../types/types';
 
 export const Warranties = () => {
   const [search, setSearch] = useState('');

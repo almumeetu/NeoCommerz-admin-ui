@@ -3,10 +3,7 @@ import { PageHeader } from '../../components/PageHeaders';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import { Search, Download, Filter, FileText, Calendar, DollarSign, Tag } from 'lucide-react';
 import clsx from 'clsx';
-
-interface GenericFinancePageProps {
-  title: string;
-}
+import type { GenericFinancePageProps } from '../../types/types';
 
 export const GenericFinancePage = ({ title }: GenericFinancePageProps) => {
   const [data, setData] = useState<any>(null);

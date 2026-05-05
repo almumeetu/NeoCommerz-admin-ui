@@ -2,14 +2,7 @@ import { useState, useEffect } from 'react';
 import { Shield, Edit, Trash2, Plus, Search, RefreshCw } from 'lucide-react';
 import { Modal } from '../components/Modal';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-
-interface SystemUser {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  status: string;
-}
+import type { SystemUser } from '../types/types';
 
 export const AccessManagement = () => {
   const [users, setUsers] = useState<SystemUser[]>([]);

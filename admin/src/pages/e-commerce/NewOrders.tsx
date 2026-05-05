@@ -1,8 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, MessageSquare, Package, Clock, DollarSign, User, Phone, MapPin, ShoppingBag, Truck, CheckCircle, XCircle, Check, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-type TabKey = 'placed' | 'packaging' | 'ready' | 'onway' | 'delivered' | 'failed';
+import type { TabKey, Order } from '../../types/types';
 
 export const NewOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');

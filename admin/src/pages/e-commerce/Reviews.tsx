@@ -1,16 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, MessageSquare, Star, ThumbsUp, User, Calendar, Check, X, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-type StatusFilterKey = 'all' | 'pending' | 'approved' | 'rejected';
-
-interface ProductReviews {
-  productId: string;
-  productName: string;
-  totalReviews: number;
-  averageRating: number;
-  reviews: Review[];
-}
+import type { ProductReviews, StatusFilterKey, Review } from '../../types/types';
 
 export const Reviews = () => {
   const [searchTerm, setSearchTerm] = useState('');

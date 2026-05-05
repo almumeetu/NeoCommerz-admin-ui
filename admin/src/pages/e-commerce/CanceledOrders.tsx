@@ -1,8 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Filter, Download, MessageSquare, XCircle, Calendar, DollarSign, User, Phone, AlertCircle, Check, Menu, X as CloseIcon, ArrowLeft } from 'lucide-react';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-type CancelFilterKey = 'all' | 'customer' | 'admin' | 'system';
+import type { CancelFilterKey, CanceledOrder } from '../../types/types';
 
 export const CanceledOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');

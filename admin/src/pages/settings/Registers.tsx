@@ -2,13 +2,7 @@ import { Plus, RefreshCw, Edit, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-interface Register {
-  id: number;
-  name: string;
-  branch: string;
-  status: boolean;
-}
+import type { Register } from '../../types/types';
 
 export const Registers = () => {
   const [search, setSearch] = useState('');

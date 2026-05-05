@@ -3,14 +3,7 @@ import { Edit, Trash2 } from 'lucide-react';
 import { PageHeader, SectionHeader } from '../../components/PageHeaders';
 import { Modal } from '../../components/Modal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
-
-interface Brand {
-  id: number;
-  name: string;
-  description: string;
-  createdAt: string;
-  status: boolean;
-}
+import type { Brand } from '../../types/types';
 
 export const Brands = () => {
   const [brands, setBrands] = useState<Brand[]>([]);

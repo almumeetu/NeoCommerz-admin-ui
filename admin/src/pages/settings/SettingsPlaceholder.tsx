@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface PlaceholderProps {
-  title: string;
-  subtitle: string;
-}
+import type { PlaceholderProps } from '../../types/types';
 
 export const SettingsPlaceholder: React.FC<PlaceholderProps> = ({ title, subtitle }) => {
   return (

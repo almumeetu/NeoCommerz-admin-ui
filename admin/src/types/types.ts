@@ -98,3 +98,141 @@ export interface Supplier {
   email: string;
   address: string;
 }
+
+// Additional app-specific types consolidated from components/pages
+export interface Warranty {
+  id: number;
+  name: string;
+  duration: string;
+  type: string;
+  status: boolean;
+}
+
+export type StatusFilterKey = 'all' | 'pending' | 'approved' | 'rejected';
+export type PaymentFilterKey = 'all' | 'bKash' | 'Nagad' | 'Cash on Delivery';
+export type CancelFilterKey = 'all' | 'customer' | 'admin' | 'system';
+export type TabKey = 'placed' | 'packaging' | 'ready' | 'onway' | 'delivered' | 'failed';
+
+export interface ProductReviews {
+  productId: string;
+  productName: string;
+  totalReviews: number;
+  averageRating: number;
+  reviews: Review[];
+}
+
+export interface CategoryItem {
+  id: string;
+  name: string;
+  children?: CategoryItem[];
+}
+
+export interface Branch {
+  id: number;
+  name: string;
+  location: string;
+  phone: string;
+  manager: string;
+  status: boolean;
+}
+
+export interface ProductItem {
+  id: number;
+  name: string;
+  category: string;
+  brand: string;
+  price: string;
+  stock: number;
+  status: boolean;
+  description?: string;
+  image?: string;
+}
+
+export interface Role {
+  id: number;
+  name: string;
+  permissions: string;
+  users: number;
+  status: boolean;
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+  createdOn?: string;
+  status?: boolean;
+  slug?: string;
+}
+
+export interface Brand {
+  id: number;
+  name: string;
+  description?: string;
+  createdAt?: string;
+  status?: boolean;
+  slug?: string;
+}
+
+export interface SystemUser {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+}
+
+export interface SupplierItem {
+  id: number;
+  companyName: string;
+  businessPhone: string;
+  address: string;
+  status: boolean;
+}
+
+export interface GenericFinancePageProps {
+  title: string;
+  subtitle?: string;
+}
+
+export interface Register {
+  id: number;
+  name: string;
+  branch: string;
+  status: boolean;
+}
+
+export interface PlaceholderProps {
+  title: string;
+  subtitle?: string;
+  message?: string;
+}
+
+export interface AuthUser {
+  id: number | string;
+  name: string;
+  email: string;
+  role: string;
+}
+
+export interface AuthContextType {
+  user: AuthUser | null;
+  login: (user: AuthUser) => void;
+  logout: () => void;
+  isAuthenticated: boolean;
+  loading: boolean;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+}
+
+export interface CustomerGroup {
+  id: number;
+  name: string;
+  discount?: string;
+  members?: number;
+  status?: boolean;
+}
