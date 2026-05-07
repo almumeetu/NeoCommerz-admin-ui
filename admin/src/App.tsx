@@ -20,6 +20,7 @@ import { GenericFinancePage } from './pages/finance/GenericFinancePage';
 import { Settings } from './pages/Settings';
 import { AccessManagement } from './pages/AccessManagement';
 import { Roles } from './pages/access-management/Roles';
+import { ManageWebsite } from './pages/settings/ManageWebsite';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 // E-Commerce Pages
@@ -90,7 +91,7 @@ function AppRoutes() {
         <Route path="access-management/users" element={<AccessManagement />} />
         <Route path="access-management/roles" element={<Roles />} />
         <Route path="settings/general" element={<Settings />} />
-        <Route path="settings/manage-website" element={<GenericFinancePage title="Manage Website" />} />
+        <Route path="settings/manage-website" element={<ManageWebsite />} />
         <Route path="report" element={<Report />} />
         <Route path="*" element={<div className="p-8 text-gray-500">Page under construction</div>} />
       </Route>
